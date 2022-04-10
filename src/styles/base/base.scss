@@ -1,3 +1,19 @@
+:root {
+  //colors
+  --color-primary: 108, 186, 198;
+  --color-primary-light: 226, 236, 233;
+
+  --color-dark: 35, 80, 88;
+  --color-light: 255, 255, 255;
+
+  //font-family
+  --ff-primary: "Inter", sans-serif;
+
+  //font-size
+  --fs-800: 3rem;
+  --fs-500: 1.8rem;
+  --fs-400: 1.4rem;
+}
 html {
   font-size: 62.5%;
 }
@@ -11,12 +27,16 @@ html {
 }
 
 body {
+  font-family: var(--ff-primary);
+  color: rgba(var(--color-dark), 1);
+  font-size: 1.4rem;
   min-height: 100vh;
   line-height: 1.5;
   box-sizing: border-box;
-  font-size: 1.4rem;
 }
-
+Link {
+  text-decoration: none;
+}
 img {
   display: block;
 }

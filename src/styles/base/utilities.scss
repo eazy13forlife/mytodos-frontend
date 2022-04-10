@@ -1,0 +1,17 @@
+.container {
+  max-width: 110rem;
+  padding: 0rem 4rem;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.full-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.content-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
