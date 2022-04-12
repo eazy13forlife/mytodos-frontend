@@ -1,26 +1,31 @@
 .LandingHeader {
   height: 10rem;
-
   &__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+  &__nav {
+    align-self: stretch;
+  }
   &__nav-list {
+    height: 100%;
     display: flex;
     list-style-type: none;
   }
   &__nav-item {
-    &:not(:first-child) {
-      margin-left: 2rem;
+    &:hover {
+      background-color: rgba(var(--color-black), 0.03);
+      border-bottom: 1px solid rgba(var(--color-primary));
     }
   }
   &__nav-link {
+    height: 100%;
+    padding: 0rem 2rem;
+    display: flex;
+    align-items: center;
     font-size: var(--fs-500);
     text-decoration: none;
     color: rgba(var(--color-dark), 1);
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
