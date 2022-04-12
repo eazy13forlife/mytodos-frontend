@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import FullPage from "../../components/FullPage/FullPage.js";
 import LandingHeader from "../../components/LandingHeader/LandingHeader.js";
@@ -14,9 +15,12 @@ const LandingPage = () => {
             <h1 className="LandingPage__header">
               Organize it all with myTodos
             </h1>
-            <button className="primary-button primary-button--dark">
+            <Link
+              to="/signup"
+              className="LandingPage__button primary-button primary-button--dark"
+            >
               Get Started
-            </button>
+            </Link>
           </div>
         </div>
       </section>

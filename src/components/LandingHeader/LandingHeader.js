@@ -17,7 +17,7 @@ const LandingHeader = () => {
             </li>
             <li className="LandingHeader__nav-item">
               <Link to="/signup" className="LandingHeader__nav-link">
-                Log in
+                Sign Up
               </Link>
             </li>
           </ul>

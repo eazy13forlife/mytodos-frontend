@@ -12,8 +12,12 @@
   //font-size
   --fs-700: 5rem;
   --fs-600: 3rem;
+  --fs-550: 2rem;
   --fs-500: 1.8rem;
   --fs-400: 1.4rem;
+
+  //other
+  --form-border: 1px solid rgba(var(--color-dark), 0.25);
 }
 html {
   font-size: 62.5%;
@@ -35,9 +39,7 @@ body {
   line-height: 1.5;
   box-sizing: border-box;
 }
-Link {
-  text-decoration: none;
-}
+
 img {
   display: block;
 }

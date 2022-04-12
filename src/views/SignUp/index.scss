@@ -1,4 +1,56 @@
-.Signup {
-  background-color: green;
-  height: 100%;
+.Entry {
+  background-color: rgba(var(--color-primary), 0.2);
+  &__main {
+    padding: 8rem 0rem 10rem 0rem;
+    flex-grow: 1;
+  }
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.EntryForm {
+  background-color: rgba(var(--color-light), 1);
+  width: 45rem;
+  padding: 2rem;
+  border: var(--form-border);
+  border-radius: 10px;
+  &__title {
+    font-weight: 600;
+    font-size: var(--fs-600);
+  }
+  &__group {
+    display: flex;
+    flex-direction: column;
+    &:not(:first-child) {
+      margin-top: 2rem;
+    }
+  }
+  &__input-label {
+    font-size: var(--fs-400);
+    font-weight: 600;
+  }
+  &__input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: var(--form-border);
+    margin-top: 0.5rem;
+  }
+  &__button {
+    font-size: var(--fs-500);
+  }
+  &__info {
+    border-top: var(--form-border);
+    margin-top: 3rem;
+    padding: 3rem 0rem;
+    text-align: center;
+  }
+  &__link {
+    color: rgba(var(--color-primary), 1);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
