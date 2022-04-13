@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import FullPage from "../../components/FullPage/FullPage.js";
 import LandingHeader from "../../components/LandingHeader/LandingHeader.js";
 import "./index.scss";
 

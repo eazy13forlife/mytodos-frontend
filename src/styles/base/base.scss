@@ -6,6 +6,7 @@
   --color-dark: 35, 80, 88;
   --color-light: 255, 255, 255;
   --color-black: 0, 0, 0;
+  --color-error: red;
   //font-family
   --ff-primary: "Inter", sans-serif;
 
@@ -38,6 +39,7 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   box-sizing: border-box;
+  display: grid;
 }
 
 img {

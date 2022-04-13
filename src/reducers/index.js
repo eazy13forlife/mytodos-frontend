@@ -1,5 +1,11 @@
 import { combineReducers } from "redux";
 
+import userReducer from "./userReducer.js";
+import signUpErrorsReducer from "./signUpErrorsReducer.js";
+import loginErrorReducer from "./loginErrorReducer.js";
+
 export default combineReducers({
-  hello: () => "4",
+  userInfo: userReducer,
+  signUpErrorsBackend: signUpErrorsReducer,
+  loginErrorBackend: loginErrorReducer,
 });

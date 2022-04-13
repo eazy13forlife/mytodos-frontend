@@ -1,17 +1,18 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
+import history from "./history.js";
 
 import LandingPage from "./views/LandingPage";
 import Inbox from "./views/Inbox";
-import Login from "./views/Login";
+import Login from "./views/Entry/Login/";
 import Project from "./views/Project";
-import SignUp from "./views/SignUp";
+import SignUp from "./views/Entry/SignUp";
 import Today from "./views/Today";
 import Upcoming from "./views/Upcoming";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Route path="/" exact>
         <LandingPage />
       </Route>
@@ -33,7 +34,7 @@ const App = () => {
       <Route path="/projects/:project-name" exact>
         <Project />
       </Route>
-    </BrowserRouter>
+    </Router>
   );
 };
 

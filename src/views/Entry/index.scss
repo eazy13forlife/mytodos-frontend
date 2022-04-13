@@ -1,9 +1,7 @@
 .Entry {
   background-color: rgba(var(--color-primary), 0.2);
-  &__main {
-    padding: 8rem 0rem 10rem 0rem;
-    flex-grow: 1;
-  }
+  height: 100%;
+  padding: 8rem 0rem 10rem 0rem;
   &__container {
     display: flex;
     justify-content: center;
@@ -30,12 +28,33 @@
   &__input-label {
     font-size: var(--fs-400);
     font-weight: 600;
+    text-transform: capitalize;
   }
+  &__input-container {
+    position: relative;
+    margin-top: 0.5rem;
+  }
+
   &__input {
     padding: 0.5rem;
     border-radius: 5px;
     border: var(--form-border);
-    margin-top: 0.5rem;
+    width: 100%;
+    &--error {
+      border-color: var(--color-error);
+    }
+  }
+  &__input-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    font-size: 2rem;
+    color: var(--color-error);
+    transform: translatey(-50%);
+    display: none;
+    &--error {
+      display: block;
+    }
   }
   &__button {
     font-size: var(--fs-500);
