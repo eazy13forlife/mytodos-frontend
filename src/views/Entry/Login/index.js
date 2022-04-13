@@ -6,7 +6,7 @@ import history from "../../../history.js";
 import Input from "../../../components/EntryFormFields/Input/Input.js";
 import validate from "./validation.js";
 import "../index.scss";
-import { loginUser } from "../../../actions";
+import { loginUser, removeLoginError } from "../../../actions";
 
 const loginErrors = {};
 
@@ -31,12 +31,13 @@ const Login = () => {
   const [clickLogin, setClickLogin] = useState(false);
 
   useEffect(() => {
-    //if we clicked login and we got userInfo back, it means no errors so we can go to inbox page
-    if (clickLogin && userInfo) {
-      setClickLogin(false); //we don't need this because when component mounts again, it will be default values of false
-      history.push("/inbox");
-    } else {
-      setClickLogin(false);
+    //if we clicked login and we got userInfo back, it means no errors so we can go to inbox page. We don't have to  setClickLogin to false because we are mounting a new page, so if this page mounts again, it will be set to default false. We don't have to remove loginErrors because action creator takes care of that. Otherwise, we leave error so it will show on screen and we set clickLogin to false, so when we click again, it will be true and this useEffect can run
+    if (clickLogin) {
+      if (userInfo) {
+        history.push("/inbox");
+      } else {
+        setClickLogin(false);
+      }
     }
   }, [clickLogin]);
 
@@ -44,10 +45,8 @@ const Login = () => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-
-    setClickLogin(true);
 
     Object.keys(formData).forEach((field) => {
       validate(formData[field], field, loginErrors);
@@ -55,8 +54,9 @@ const Login = () => {
 
     setFormErrors({ ...loginErrors });
 
-    if (!Object.keys(loginErrors).length && !loginErrorBackend) {
-      dispatch(loginUser(formData));
+    if (!Object.keys(loginErrors).length) {
+      await dispatch(loginUser(formData));
+      setClickLogin(true);
     }
   };
 

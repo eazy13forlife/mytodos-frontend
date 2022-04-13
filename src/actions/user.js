@@ -32,7 +32,7 @@ const loginUser = (userData) => {
         "http://localhost:3000/users/login",
         userData
       );
-
+      console.log(loggedUser);
       dispatch({
         type: types.LOGIN_USER,
         payload: loggedUser.data,
@@ -44,6 +44,7 @@ const loginUser = (userData) => {
         dispatch(removeLoginError());
       }
     } catch (e) {
+      console.log(e.response);
       dispatch(throwLoginError());
     }
   };
