@@ -15,6 +15,7 @@
   --fs-600: 3rem;
   --fs-550: 2rem;
   --fs-500: 1.8rem;
+  --fs-450: 1.6rem;
   --fs-400: 1.4rem;
 
   //other
@@ -35,7 +36,7 @@ html {
 body {
   font-family: var(--ff-primary);
   color: rgba(var(--color-dark), 1);
-  font-size: 1.4rem;
+  font-size: var(--fs-450);
   min-height: 100vh;
   line-height: 1.5;
   box-sizing: border-box;

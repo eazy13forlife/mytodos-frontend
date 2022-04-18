@@ -1,7 +1,7 @@
 import types from "../actions/types.js";
 
-let userData = null;
-/*
+let userData;
+
 const userJSON = localStorage.getItem("user");
 
 if (userJSON) {
@@ -9,7 +9,6 @@ if (userJSON) {
 } else {
   userData = null;
 }
-*/
 
 const userReducer = (state = userData, action) => {
   switch (action.type) {
@@ -27,6 +26,10 @@ const userReducer = (state = userData, action) => {
 
       return action.payload;
     }
+    case types.LOGOUT_USER:
+      localStorage.removeItem("user");
+
+      return null;
     default:
       return state;
   }

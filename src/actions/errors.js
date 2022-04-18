@@ -28,6 +28,12 @@ const throwSignUpErrors = (errorsData) => {
   }
 };
 
+const removeSignUpErrors = () => {
+  return {
+    type: types.REMOVE_SIGN_UP_ERRORS,
+  };
+};
+
 const throwLoginError = () => {
   return {
     type: types.THROW_LOGIN_ERROR,
@@ -39,4 +45,23 @@ const removeLoginError = () => {
     type: types.REMOVE_LOGIN_ERROR,
   };
 };
-export { throwSignUpErrors, throwLoginError, removeLoginError };
+
+const throwLogoutError = () => {
+  return {
+    type: types.THROW_LOGOUT_ERROR,
+  };
+};
+
+const removeLogoutError = () => {
+  return {
+    type: types.REMOVE_LOGOUT_ERROR,
+  };
+};
+export {
+  throwSignUpErrors,
+  throwLoginError,
+  removeSignUpErrors,
+  removeLoginError,
+  throwLogoutError,
+  removeLogoutError,
+};

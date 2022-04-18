@@ -12,7 +12,12 @@ import "../index.scss";
 let signUpErrors = {};
 
 const SignUp = () => {
+  console.log("i just rerendered");
   const dispatch = useDispatch();
+
+  const userInfo = useSelector((state) => {
+    return state.userInfo;
+  });
 
   const signUpErrorsBackend = useSelector((state) => {
     return state.signUpErrorsBackend;
@@ -26,17 +31,32 @@ const SignUp = () => {
 
   const [formErrors, setFormErrors] = useState({});
 
+  const [clickSignUp, setClickSignUp] = useState(false);
+
+  //if clickSignUp is true and no formErrors(from backend and frontend), let's go to inbox page. Otherwise, setClickSignUp needs to be false,and we try again.
+  useEffect(() => {
+    if (clickSignUp) {
+      if (userInfo) {
+        history.push("/inbox");
+      } else {
+        setClickSignUp(false);
+      }
+    }
+  }, [clickSignUp]);
+
   //whenever signUpErrorsBackend changes,change global signUpErrors to equal these new errors (since it is our main truth of current errors) and then we update our formErrors state to equal this global signUpErrors
   useEffect(() => {
-    signUpErrors = { ...signUpErrorsBackend };
-    setFormErrors(signUpErrors);
+    if (signUpErrorsBackend) {
+      signUpErrors = { ...signUpErrorsBackend };
+      setFormErrors(signUpErrors);
+    }
   }, [signUpErrorsBackend]);
 
   const onInputChange = (e, field) => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     Object.keys(formData).forEach((field) => {
@@ -48,8 +68,8 @@ const SignUp = () => {
 
     // We can't automatically check formErrors to see if empty because setState does not always immediately update the component, so refer instead to global signUpErrors state to see if we do or don't have errors.
     if (!Object.keys(signUpErrors).length) {
-      dispatch(createUser(formData));
-      console.log("hi");
+      await dispatch(createUser(formData));
+      setClickSignUp(true);
     }
   };
 

@@ -1,0 +1,48 @@
+.Header {
+  height: 8rem;
+  padding: 1.5rem 0rem;
+  background-color: rgba(var(--color-primary), 1);
+  color: rgba(var(--color-light), 1);
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__nav {
+    align-self: stretch;
+  }
+  &__nav-list {
+    list-style-type: none;
+    height: 100%;
+    display: flex;
+  }
+  &__button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 0rem 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: inherit;
+    &:hover {
+      background-color: rgba(var(--color-light), 0.2);
+    }
+  }
+  &__icon {
+    font-size: 2rem;
+  }
+  &__link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0rem 1rem;
+    text-decoration: none;
+    font-size: var(--fs-500);
+    color: inherit;
+    &:hover {
+      background-color: rgba(var(--color-light), 0.2);
+    }
+  }
+}

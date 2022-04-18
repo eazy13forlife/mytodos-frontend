@@ -4,7 +4,10 @@ import types from "./types.js";
 import {
   throwSignUpErrors,
   throwLoginError,
+  removeSignUpErrors,
   removeLoginError,
+  throwLogoutError,
+  removeLogoutError,
 } from "./errors.js";
 
 const createUser = (userData) => {
@@ -19,6 +22,8 @@ const createUser = (userData) => {
         type: types.CREATE_USER,
         payload: createdUser.data,
       });
+
+      dispatch(removeSignUpErrors());
     } catch (e) {
       dispatch(throwSignUpErrors(e.response.data));
     }
@@ -49,4 +54,27 @@ const loginUser = (userData) => {
     }
   };
 };
-export { createUser, loginUser };
+
+const logoutUser = () => {
+  return async (dispatch, getState) => {
+    const userInfo = getState().userInfo;
+    console.log(`bearer ${userInfo.token}`);
+    try {
+      await axios.post("http://localhost:3000/users/logout", undefined, {
+        headers: {
+          authorization: `bearer ${userInfo.token}`,
+        },
+      });
+
+      dispatch({
+        type: types.LOGOUT_USER,
+      });
+
+      dispatch(removeLogoutError());
+    } catch (e) {
+      console.log(e.response);
+      dispatch(throwLogoutError());
+    }
+  };
+};
+export { createUser, loginUser, logoutUser };
