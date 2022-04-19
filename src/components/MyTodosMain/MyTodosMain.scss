@@ -1,0 +1,29 @@
+.Todos {
+  &__content {
+    padding: 2rem 5rem;
+  }
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+  }
+  &__filter-and-sort {
+    display: flex;
+  }
+  &__action-button {
+    padding: 1rem;
+    color: rgba(var(--color-black), 0.4);
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(var(--color-black), 0.1);
+    }
+  }
+  &__action-button-text {
+    margin-left: 0.5rem;
+  }
+}

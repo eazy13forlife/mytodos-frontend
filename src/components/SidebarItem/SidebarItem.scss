@@ -1,0 +1,37 @@
+.Sidebar {
+  &__item {
+    display: flex;
+    border-radius: 1rem;
+    &:hover {
+      background-color: rgba(var(--color-primary), 0.1);
+    }
+  }
+  &__link {
+    display: flex;
+    padding: 1rem 0rem 1rem 1rem;
+    width: 100%;
+    text-decoration: none;
+    align-items: center;
+    color: rgba(var(--color-dark), 1);
+    font-weight: 400;
+  }
+  &__icon {
+    margin-right: 1rem;
+    font-size: 2.5rem;
+    &--mailbox {
+      color: purple;
+    }
+    &--calendar {
+      color: green;
+    }
+    &--upcoming-calendar {
+      color: rgb(74, 132, 226);
+    }
+  }
+  &__count {
+    margin-left: 2rem;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: rgba(var(--color-primary), 1);
+  }
+}

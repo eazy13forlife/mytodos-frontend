@@ -72,7 +72,6 @@ const logoutUser = () => {
 
       dispatch(removeLogoutError());
     } catch (e) {
-      console.log(e.response);
       dispatch(throwLogoutError());
     }
   };

@@ -37,23 +37,21 @@ const Header = () => {
 
   return (
     <header className="Header">
-      <div className="Header__container container">
-        <span className="color-light logo">myTodos</span>
-        <nav className="Header__nav">
-          <ul className="Header__nav-list">
-            <li className="Header__item">
-              <button className="Header__button">
-                <BsPlusLg className="Header__icon" />
-              </button>
-            </li>
-            <li className="Header__item">
-              <Link to="#" className="Header__link" onClick={onLogoutClick}>
-                Logout
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <span className="color-light logo">myTodos</span>
+      <nav className="Header__nav">
+        <ul className="Header__nav-list">
+          <li className="Header__item">
+            <button className="Header__button">
+              <BsPlusLg className="Header__icon" />
+            </button>
+          </li>
+          <li className="Header__item">
+            <Link to="#" className="Header__link" onClick={onLogoutClick}>
+              Logout
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };

@@ -8,7 +8,7 @@ const LandingPage = () => {
   return (
     <div className="LandingPage full-wrap">
       <LandingHeader />
-      <section className="LandingPage__main">
+      <section className="LandingPage__main stretch-vertical">
         <div className="LandingPage__container container">
           <div className="LandingPage__content">
             <h1 className="LandingPage__header">
