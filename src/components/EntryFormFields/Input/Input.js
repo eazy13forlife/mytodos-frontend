@@ -1,6 +1,5 @@
 import React from "react";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import "../Fields.scss";
 
 const Input = ({ type, name, id, value, onChange, onBlur, errors }) => {
   return (

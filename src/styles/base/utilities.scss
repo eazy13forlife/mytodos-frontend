@@ -7,7 +7,7 @@
 }
 
 .full-wrap {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -20,6 +20,12 @@
   flex-grow: 1;
 }
 
+.align-right {
+  text-align: right;
+}
+.full-width {
+  width: 100%;
+}
 //colors
 .color-primary {
   color: rgba(var(--color-primary), 1);
@@ -35,4 +41,7 @@
 //text
 .capitalize {
   text-transform: capitalize;
+}
+.uppercase {
+  text-transform: uppercase;
 }

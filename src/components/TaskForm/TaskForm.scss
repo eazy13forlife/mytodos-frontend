@@ -1,0 +1,89 @@
+.TaskForm {
+  position: relative;
+  padding: 2rem;
+  height: 100%;
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(var(--color-dark), 1);
+    h2 {
+      font-weight: 400;
+    }
+  }
+  &__close-button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background-color: rgba(var(--color-black), 0.2);
+    }
+  }
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    &::after {
+      content: ":";
+    }
+  }
+  &__text-area {
+    overflow: scroll;
+    height: 90%;
+  }
+  &__icon {
+    color: rgba(var(--color-dark), 1);
+    font-size: 4rem;
+  }
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 2rem;
+    grid-row-gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  &__group {
+    position: relative;
+    &--title {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+    &--priority {
+      grid-column: 2/3;
+      grid-row: 1/2;
+    }
+    &--description {
+      grid-column: 1/2;
+      grid-row: 2/4;
+      height: 100%;
+    }
+    &--project {
+      grid-column: 2/3;
+      grid-row: 2/3;
+    }
+    &--dueDate {
+      grid-column: 2/3;
+      grid-row: 3/4;
+    }
+  }
+  &__input-padding {
+    padding: 0.2rem 0.5rem;
+  }
+  &__select {
+    background-color: rgba(var(--color-white));
+  }
+
+  &__error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
+.align-right {
+  margin-top: 2rem;
+}

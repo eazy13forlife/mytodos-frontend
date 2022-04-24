@@ -5,13 +5,16 @@ import { Link } from "react-router-dom";
 
 import history from "../../history.js";
 import { logoutUser } from "../../actions/";
-
+import Modal from "../Modal/Modal.js";
+import TaskForm from "../TaskForm/TaskForm.js";
 import "./Header.scss";
 
 const Header = () => {
   const dispatch = useDispatch();
 
   const [clickLogout, setClickLogout] = useState(false);
+
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   const userInfo = useSelector((state) => {
     return state.userInfo;
@@ -41,7 +44,12 @@ const Header = () => {
       <nav className="Header__nav">
         <ul className="Header__nav-list">
           <li className="Header__item">
-            <button className="Header__button">
+            <button
+              className="Header__button"
+              onClick={() => {
+                setShowCreateModal(true);
+              }}
+            >
               <BsPlusLg className="Header__icon" />
             </button>
           </li>
@@ -52,6 +60,11 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+      {showCreateModal && (
+        <Modal>
+          <TaskForm role="create" />
+        </Modal>
+      )}
     </header>
   );
 };

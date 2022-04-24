@@ -61,7 +61,7 @@ const Login = () => {
   };
 
   return (
-    <div className="Entry">
+    <div className="Entry full-wrap">
       <div className="Entry__container container">
         <form
           method="post"
