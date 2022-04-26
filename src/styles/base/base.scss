@@ -51,6 +51,7 @@ button,
 textarea,
 select {
   font: inherit;
+  border: 1px solid rgba(var(--color-dark));
 }
 
 @media (prefers-reduced-motion: reduce) {

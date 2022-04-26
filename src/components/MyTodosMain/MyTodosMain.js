@@ -1,12 +1,30 @@
 import React from "react";
-
-import Header from "../Header/Header.js";
-import Sidebar from "../Sidebar/Sidebar.js";
+import { useSelector } from "react-redux";
+import moment from "moment";
 import { FaFilter } from "react-icons/fa";
 import { BiSortAlt2 } from "react-icons/bi";
+import TaskCard from "../TaskCard/TaskCard.js";
 import "./MyTodosMain.scss";
 
-const MyTodosMain = ({ title, children }) => {
+const MyTodosMain = ({ title, tasks }) => {
+  const renderedTasks = tasks.map((task) => {
+    const { title, priority, _id: id } = task;
+
+    const dueDate = task.dueDate
+      ? moment(task.dueDate).format("MMMM Do, YYYY")
+      : "";
+
+    return (
+      <TaskCard
+        title={title}
+        priority={priority}
+        dueDate={dueDate}
+        key={id}
+        id={id}
+      />
+    );
+  });
+
   return (
     <main className="Todos__content">
       <div className="Todos__heading">
@@ -22,7 +40,7 @@ const MyTodosMain = ({ title, children }) => {
           </button>
         </div>
       </div>
-      {children}
+      {renderedTasks}
     </main>
   );
 };

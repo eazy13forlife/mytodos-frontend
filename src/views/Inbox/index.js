@@ -1,22 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import Header from "../../components/Header/Header.js";
-import Sidebar from "../../components/Sidebar/Sidebar.js";
-import MyTodosMain from "../../components/MyTodosMain/MyTodosMain.js";
+import { fetchTasks } from "../../actions/";
+import GeneralLayout from "../GeneralLayout/GeneralLayout.js";
 
 import "./index.scss";
 const Inbox = () => {
-  return (
-    <div className="Inbox full-wrap">
-      <Header />
-      <div className="flex stretch-vertical">
-        <Sidebar />
-        <MyTodosMain title="Inbox">
-          <p>this is where the rendered list will go</p>
-        </MyTodosMain>
-      </div>
-    </div>
-  );
+  const dispatch = useDispatch();
+
+  const allTasks = useSelector((state) => {
+    return state.allTasks;
+  });
+
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, []);
+
+  return <GeneralLayout title="Inbox" tasks={allTasks} />;
 };
 
 export default Inbox;

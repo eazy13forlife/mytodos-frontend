@@ -57,6 +57,37 @@ const removeLogoutError = () => {
     type: types.REMOVE_LOGOUT_ERROR,
   };
 };
+
+const throwTaskCreationError = (data) => {
+  const errorsObject = {};
+
+  if (data.errors) {
+    const { errors } = data;
+
+    const errorFields = Object.keys(errors);
+
+    errorFields.forEach((field) => {
+      errorsObject[field] = errors[field].message;
+    });
+
+    return {
+      type: types.THROW_TASK_CREATION_ERROR,
+      payload: errorsObject,
+    };
+  }
+
+  return {
+    type: types.THROW_TASK_CREATION_ERROR,
+    payload: errorsObject,
+  };
+};
+
+const removeTaskCreationError = () => {
+  return {
+    type: types.REMOVE_TASK_CREATION_ERROR,
+  };
+};
+
 export {
   throwSignUpErrors,
   throwLoginError,
@@ -64,4 +95,6 @@ export {
   removeLoginError,
   throwLogoutError,
   removeLogoutError,
+  throwTaskCreationError,
+  removeTaskCreationError,
 };

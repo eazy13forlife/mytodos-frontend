@@ -58,7 +58,7 @@ const loginUser = (userData) => {
 const logoutUser = () => {
   return async (dispatch, getState) => {
     const userInfo = getState().userInfo;
-    console.log(`bearer ${userInfo.token}`);
+
     try {
       await axios.post("http://localhost:3000/users/logout", undefined, {
         headers: {
@@ -76,4 +76,21 @@ const logoutUser = () => {
     }
   };
 };
-export { createUser, loginUser, logoutUser };
+
+const getMyProfile = () => {
+  return async (dispatch, getState) => {
+    const userInfo = getState().userInfo;
+
+    const userResponse = await axios.get("http://localhost:3000/users/me", {
+      headers: {
+        authorization: `bearer ${userInfo.token}`,
+      },
+    });
+
+    dispatch({
+      type: types.GET_MY_PROFILE,
+      payload: userResponse.data,
+    });
+  };
+};
+export { createUser, loginUser, logoutUser, getMyProfile };

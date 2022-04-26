@@ -19,6 +19,13 @@ const userReducer = (state = userData, action) => {
 
       return action.payload;
     }
+    case types.GET_MY_PROFILE: {
+      const userJSON = JSON.stringify(action.payload);
+
+      localStorage.setItem("user", userJSON);
+
+      return action.payload;
+    }
     case types.LOGIN_USER: {
       const userJSON = JSON.stringify(action.payload);
 
