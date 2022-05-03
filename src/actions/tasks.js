@@ -73,4 +73,18 @@ const editTask = (taskId, taskData) => {
   };
 };
 
-export { createTask, fetchTasks, editTask };
+const deleteTask = (taskId) => {
+  return async (dispatch, getState) => {
+    const userInfo = getState().userInfo;
+
+    await axios.delete(`http://localhost:3000/tasks/${taskId}`, {
+      headers: {
+        authorization: `bearer ${userInfo.token}`,
+      },
+    });
+
+    dispatch(fetchTasks());
+  };
+};
+
+export { createTask, fetchTasks, editTask, deleteTask };

@@ -6,3 +6,12 @@
     top: 5rem;
   }
 }
+
+@keyframes slideUp {
+  0% {
+    bottom: -150%;
+  }
+  100% {
+    bottom: 2.5rem;
+  }
+}

@@ -1,7 +1,11 @@
 import { createUser, loginUser, logoutUser, getMyProfile } from "./user.js";
 import { throwSignUpErrors, removeLoginError } from "./errors.js";
-import { createTask, fetchTasks, editTask } from "./tasks.js";
-
+import { createTask, fetchTasks, editTask, deleteTask } from "./tasks.js";
+import {
+  addRecentlyCompleted,
+  removeRecentlyCompleted,
+} from "./recentlyCompleted.js";
+import { onTaskCompletion } from "./buttonFunctions.js";
 export {
   createUser,
   loginUser,
@@ -12,4 +16,8 @@ export {
   createTask,
   fetchTasks,
   editTask,
+  deleteTask,
+  addRecentlyCompleted,
+  removeRecentlyCompleted,
+  onTaskCompletion,
 };

@@ -1,0 +1,40 @@
+.TaskCompletedBox {
+  padding: 1.5rem 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(var(--color-dark), 0.15);
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30rem;
+  font-size: var(--fs-400);
+  position: fixed;
+  left: 60%;
+  transform: translatex(-60%);
+  animation: slideUp 800ms forwards ease-out;
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+  &__button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  &__undo-button {
+    &:hover {
+      background-color: rgba(255, 0, 0, 0.116);
+    }
+  }
+  &__close-button {
+    margin-left: 1.5rem;
+    &:hover {
+      background-color: rgba(var(--color-black), 0.1);
+    }
+  }
+  &__close-icon {
+    font-size: var(--fs-400);
+  }
+}

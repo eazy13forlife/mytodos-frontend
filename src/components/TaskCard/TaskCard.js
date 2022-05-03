@@ -1,19 +1,34 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsFlag, BsPencil, BsTrash } from "react-icons/bs";
 import { GiCheckMark } from "react-icons/gi";
 
-import { editTask, getMyProfile } from "../../actions/";
+import {
+  editTask,
+  getMyProfile,
+  addRecentlyCompleted,
+  removeRecentlyCompleted,
+  onTaskCompletion,
+} from "../../actions/";
 import "./TaskCard.scss";
 
 const TaskCard = ({ title, priority, dueDate, id }) => {
   const dispatch = useDispatch();
 
+  const recentlyCompleted = useSelector((state) => {
+    return state.recentlyCompleted;
+  });
   const onCompletedCheck = async (e) => {
     if (e.target.checked) {
-      await dispatch(editTask(id, { completed: true }));
+      //if something already in recently completed and we marked something else as completed mark the thing that was just recently completed as completed
+      if (recentlyCompleted) {
+        await dispatch(onTaskCompletion(recentlyCompleted));
+      }
+
+      dispatch(addRecentlyCompleted(id));
+      //await dispatch(editTask(id, { completed: true }));
     } else {
-      await dispatch(editTask(id, { completed: false }));
+      //await dispatch(editTask(id, { completed: false }));
     }
     dispatch(getMyProfile()); //get profile in order to get latest tasksCompleted
   };

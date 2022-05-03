@@ -29,6 +29,7 @@ const Header = () => {
 
   useEffect(() => {
     let timerId;
+
     if (clickLogout) {
       if (!userInfo) {
         history.push("/");
