@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BsFlag, BsPencil, BsTrash } from "react-icons/bs";
+import { BsFlag, BsTrash } from "react-icons/bs";
 import { GiCheckMark } from "react-icons/gi";
 import moment from "moment";
 
 import Modal from "../Modal/Modal.js";
-import TaskForm from "../TaskForm/TaskForm.js";
 import DeleteTaskContent from "../DeleteTaskContent/DeleteTaskContent.js";
-import {
-  editTask,
-  getMyProfile,
-  addRecentlyCompleted,
-  removeRecentlyCompleted,
-  onTaskCompletion,
-} from "../../actions/";
+import EditTaskButton from "../EditTaskButton/EditTaskButton.js";
+import DeleteTaskButton from "../DeleteTaskButton/DeleteTaskButton.js";
+import { addRecentlyCompleted, onTaskCompletion } from "../../actions/";
 import "./TaskCard.scss";
 
 const TaskCard = ({ title, priority, description, project, dueDate, id }) => {
@@ -23,16 +18,12 @@ const TaskCard = ({ title, priority, description, project, dueDate, id }) => {
     return state.recentlyCompleted;
   });
 
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  const [showEditTaskModal, setShowEditTaskModal] = useState(false);
-
   const initialValues = {
     title: title,
     description: description,
     priority: priority,
     project: project,
-    dueDate: moment(dueDate).format("MM/DD/YYYY"),
+    dueDate: dueDate ? moment(dueDate).format("MM/DD/YYYY") : "",
     completed: false,
   };
 
@@ -47,10 +38,6 @@ const TaskCard = ({ title, priority, description, project, dueDate, id }) => {
 
       dispatch(addRecentlyCompleted(id));
     }
-  };
-
-  const onUpdateTask = async (taskData) => {
-    dispatch(editTask(id, taskData));
   };
 
   return (
@@ -79,45 +66,10 @@ const TaskCard = ({ title, priority, description, project, dueDate, id }) => {
 
         <span className="TaskCard__due-date">{formattedDate}</span>
 
-        <button
-          className="TaskCard__button TaskCard__button-pencil"
-          onClick={() => {
-            setShowEditTaskModal(true);
-          }}
-        >
-          <BsPencil className="TaskCard__icon TaskCard__icon-pencil" />
-        </button>
+        <EditTaskButton initialValues={initialValues} id={id} />
 
-        <button
-          className="TaskCard__button TaskCard__button-trash"
-          onClick={() => {
-            setShowDeleteModal(true);
-          }}
-        >
-          <BsTrash className="TaskCard__icon TaskCard__icon-trash" />
-        </button>
+        <DeleteTaskButton title={title} id={id} />
       </div>
-
-      {showDeleteModal && (
-        <Modal width="45rem">
-          <DeleteTaskContent
-            title={title}
-            id={id}
-            onCloseClick={setShowDeleteModal}
-          />
-        </Modal>
-      )}
-
-      {showEditTaskModal && (
-        <Modal width="70rem">
-          <TaskForm
-            role="edit"
-            initialValues={initialValues}
-            sendData={onUpdateTask}
-            showModal={setShowEditTaskModal}
-          />
-        </Modal>
-      )}
     </div>
   );
 };
