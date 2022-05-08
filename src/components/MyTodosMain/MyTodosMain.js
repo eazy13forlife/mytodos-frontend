@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { FaFilter } from "react-icons/fa";
 import { BiSortAlt2 } from "react-icons/bi";
+
+import ErrorBox from "../ErrorBox/ErrorBox.js";
 import TaskCard from "../TaskCard/TaskCard.js";
 import TaskCompletedBox from "../TaskCompletedBox/TaskCompletedBox.js";
 import useDelayUnmount from "../../hooks/useDelayUnmount.js";
@@ -15,6 +17,10 @@ const MyTodosMain = ({ title, tasks }) => {
 
   const recentlyCompleted = useSelector((state) => {
     return state.recentlyCompleted;
+  });
+
+  const deleteTaskError = useSelector((state) => {
+    return state.deleteTaskError;
   });
 
   //recentlyCompleted will be our mount indicator. If true, that means item should be mounted, if false, item should be unmounted
@@ -34,11 +40,7 @@ const MyTodosMain = ({ title, tasks }) => {
   }, [recentlyCompleted]);
 
   const renderedTasks = tasks.map((task) => {
-    const { title, priority, _id: id } = task;
-
-    const dueDate = task.dueDate
-      ? moment(task.dueDate).format("MMMM Do, YYYY")
-      : "";
+    const { title, priority, _id: id, description, project, dueDate } = task;
 
     //if a task was just checked for being completed, don't render it
     if (id !== recentlyCompleted) {
@@ -47,6 +49,8 @@ const MyTodosMain = ({ title, tasks }) => {
           title={title}
           priority={priority}
           dueDate={dueDate}
+          description={description}
+          project={project}
           key={id}
           id={id}
         />
@@ -78,6 +82,8 @@ const MyTodosMain = ({ title, tasks }) => {
       {mountTaskCompletedBox && (
         <TaskCompletedBox mountIndicator={recentlyCompleted} />
       )}
+
+      {deleteTaskError && <ErrorBox message="Unable to delete" />}
     </main>
   );
 };

@@ -1,0 +1,17 @@
+.DeleteTask {
+  padding: 2rem;
+  border: var(--border);
+  &__icon {
+    font-size: 3rem;
+  }
+  &__header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 3rem;
+  }
+  &__action-buttons {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

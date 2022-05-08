@@ -16,3 +16,17 @@
     }
   }
 }
+
+.icon-button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: rgba(var(--color-black), 0.2);
+  }
+  .icon {
+    color: rgba(var(--color-dark), 1);
+  }
+}

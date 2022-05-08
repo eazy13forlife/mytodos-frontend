@@ -12,16 +12,6 @@
       font-weight: 400;
     }
   }
-  &__close-button {
-    background-color: transparent;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:hover {
-      background-color: rgba(var(--color-black), 0.2);
-    }
-  }
   &__label {
     display: block;
     margin-bottom: 0.5rem;
@@ -33,10 +23,6 @@
     overflow: scroll;
     height: 90%;
   }
-  &__icon {
-    color: rgba(var(--color-dark), 1);
-    font-size: 4rem;
-  }
   &__content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -44,6 +30,9 @@
     grid-column-gap: 2rem;
     grid-row-gap: 3rem;
     margin-top: 2rem;
+  }
+  &__icon {
+    font-size: 4rem;
   }
 
   &__group {

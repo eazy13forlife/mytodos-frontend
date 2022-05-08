@@ -1,5 +1,9 @@
 import { createUser, loginUser, logoutUser, getMyProfile } from "./user.js";
-import { throwSignUpErrors, removeLoginError } from "./errors.js";
+import {
+  throwSignUpErrors,
+  removeLoginError,
+  removeDeleteTaskError,
+} from "./errors.js";
 import { createTask, fetchTasks, editTask, deleteTask } from "./tasks.js";
 import {
   addRecentlyCompleted,
@@ -20,4 +24,5 @@ export {
   addRecentlyCompleted,
   removeRecentlyCompleted,
   onTaskCompletion,
+  removeDeleteTaskError,
 };

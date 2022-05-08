@@ -1,7 +1,12 @@
 import axios from "axios";
 
 import types from "./types.js";
-import { throwTaskCreationError, removeTaskCreationError } from "./errors";
+import {
+  throwTaskCreationError,
+  removeTaskCreationError,
+  throwDeleteTaskError,
+  removeDeleteTaskError,
+} from "./errors";
 
 const fetchTasks = () => {
   return async (dispatch, getState) => {
@@ -43,7 +48,6 @@ const createTask = (taskData) => {
 
       dispatch(removeTaskCreationError());
     } catch (e) {
-      console.log(e.response);
       dispatch(throwTaskCreationError(e.response.data));
     }
   };
@@ -75,15 +79,23 @@ const editTask = (taskId, taskData) => {
 
 const deleteTask = (taskId) => {
   return async (dispatch, getState) => {
-    const userInfo = getState().userInfo;
+    try {
+      const userInfo = getState().userInfo;
 
-    await axios.delete(`http://localhost:3000/tasks/${taskId}`, {
-      headers: {
-        authorization: `bearer ${userInfo.token}`,
-      },
-    });
+      await axios.delete(`http://localhost:3000/tasks/${taskId}`, {
+        headers: {
+          authorization: `bearer ${userInfo.token}`,
+        },
+      });
 
-    dispatch(fetchTasks());
+      await dispatch(fetchTasks());
+
+      dispatch(removeDeleteTaskError());
+    } catch (e) {
+      dispatch(throwDeleteTaskError());
+
+      return "error";
+    }
   };
 };
 

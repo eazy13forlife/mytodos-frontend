@@ -60,7 +60,7 @@ const logoutUser = () => {
     const userInfo = getState().userInfo;
 
     try {
-      await axios.post("http://localhost:3000/users/logouts", undefined, {
+      await axios.post("http://localhost:3000/users/logout", undefined, {
         headers: {
           authorization: `bearer ${userInfo.token}`,
         },

@@ -7,6 +7,7 @@ import logoutErrorReducer from "./logoutErrorReducer.js";
 import tasksReducer from "./tasksReducer.js";
 import taskCreationErrorsReducer from "./taskCreationErrorsReducer.js";
 import recentlyCompletedReducer from "./recentlyCompletedReducer.js";
+import deleteTaskErrorReducer from "./deleteTaskErrorReducer.js";
 
 export default combineReducers({
   userInfo: userReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
   allTasks: tasksReducer,
   taskCreationErrorsBackend: taskCreationErrorsReducer,
   recentlyCompleted: recentlyCompletedReducer,
+  deleteTaskError: deleteTaskErrorReducer,
 });

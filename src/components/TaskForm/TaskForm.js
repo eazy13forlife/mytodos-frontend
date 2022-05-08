@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 
 import { TextInput, TextArea, SelectBox } from "./inputComponents.js";
 import taskValidation from "./validation.js";
 import { AiOutlineClose } from "react-icons/ai";
-import { createTask } from "../../actions/";
 
 import "./TaskForm.scss";
 
-const TaskForm = ({ role, setShowCreateModal }) => {
+const TaskForm = ({ role, showModal, initialValues, sendData }) => {
   const dispatch = useDispatch();
 
   const projects = useSelector((state) => {
@@ -27,7 +26,7 @@ const TaskForm = ({ role, setShowCreateModal }) => {
     if (clickedCreate) {
       //if no backend errors, we're good, so lets close modal. This will unmount my modal, so I dont need to set clickedCreate to false,because when it mounts, it will use initial state again.
       if (!Object.keys(errorsBackend).length) {
-        setShowCreateModal(false);
+        showModal(false);
         //otherwise, if there is error, we need to set clickedCreate to false, so when we click createTask again and no backend errors, the modal will close
       } else {
         setClickedCreate(false);
@@ -38,25 +37,24 @@ const TaskForm = ({ role, setShowCreateModal }) => {
   return (
     <div className="TaskForm">
       <Formik
-        initialValues={{
-          title: "",
-          description: "",
-          priority: "",
-          project: "",
-          dueDate: "",
-          completed: false,
-        }}
+        initialValues={initialValues}
         validationSchema={taskValidation}
         onSubmit={async (values) => {
-          await dispatch(createTask(values));
+          await sendData(values);
           setClickedCreate(true);
         }}
       >
         <Form>
           <div className="TaskForm__heading">
             {role === "create" ? <h2>Create Task</h2> : <h2>Edit Task</h2>}
-            <button type="button" className="TaskForm__close-button">
-              <AiOutlineClose className="TaskForm__icon" />
+            <button
+              type="button"
+              className="icon-button"
+              onClick={() => {
+                showModal(false);
+              }}
+            >
+              <AiOutlineClose className="TaskForm__icon icon" />
             </button>
           </div>
 

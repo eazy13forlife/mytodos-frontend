@@ -88,6 +88,18 @@ const removeTaskCreationError = () => {
   };
 };
 
+const throwDeleteTaskError = () => {
+  return {
+    type: types.THROW_DELETE_TASK_ERROR,
+  };
+};
+
+const removeDeleteTaskError = () => {
+  return {
+    type: types.REMOVE_DELETE_TASK_ERROR,
+  };
+};
+
 export {
   throwSignUpErrors,
   throwLoginError,
@@ -97,4 +109,6 @@ export {
   removeLogoutError,
   throwTaskCreationError,
   removeTaskCreationError,
+  throwDeleteTaskError,
+  removeDeleteTaskError,
 };
