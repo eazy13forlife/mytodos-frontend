@@ -1,6 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Router, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Router } from "react-router-dom";
 import history from "./history.js";
 
 import PrivateRoute from "./components/PrivateRoute/";
@@ -12,17 +12,28 @@ import Project from "./views/Project";
 import SignUp from "./views/Entry/SignUp";
 import Today from "./views/Today";
 import Upcoming from "./views/Upcoming";
+import { fetchTasks, fetchTasksToday, fetchTasksUpcoming } from "./actions/";
 
 const App = () => {
-  const userInfo = useSelector((state) => {
-    return state.userInfo;
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector((state) => {
+    return state.isLoggedIn;
   });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(fetchTasks());
+      dispatch(fetchTasksToday());
+      dispatch(fetchTasksUpcoming());
+    }
+  }, [isLoggedIn]);
 
   return (
     <Router history={history}>
-      <Route path="/" exact>
+      <SignedInRoute path="/" exact>
         <LandingPage />
-      </Route>
+      </SignedInRoute>
       <SignedInRoute path="/signup" exact>
         <SignUp />
       </SignedInRoute>

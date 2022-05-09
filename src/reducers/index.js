@@ -10,6 +10,7 @@ import recentlyCompletedReducer from "./recentlyCompletedReducer.js";
 import deleteTaskErrorReducer from "./deleteTaskErrorReducer.js";
 import tasksTodayReducer from "./tasksTodayReducer.js";
 import tasksUpcomingReducer from "./tasksUpcomingReducer.js";
+import isLoggedInReducer from "./isLoggedInReducer.js";
 
 export default combineReducers({
   userInfo: userReducer,
@@ -22,4 +23,5 @@ export default combineReducers({
   deleteTaskError: deleteTaskErrorReducer,
   tasksToday: tasksTodayReducer,
   tasksUpcoming: tasksUpcomingReducer,
+  isLoggedIn: isLoggedInReducer,
 });

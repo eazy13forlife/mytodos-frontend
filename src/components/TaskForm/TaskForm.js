@@ -54,7 +54,7 @@ const TaskForm = ({ role, showModal, initialValues, sendData }) => {
                 showModal(false);
               }}
             >
-              <AiOutlineClose className="TaskForm__icon icon" />
+              <AiOutlineClose className="TaskForm__icon" />
             </button>
           </div>
 

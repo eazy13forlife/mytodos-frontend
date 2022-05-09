@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import SidebarItem from "../SidebarItem/SidebarItem.js";
 import { BsMailbox, BsCalendar2Date } from "react-icons/bs";
