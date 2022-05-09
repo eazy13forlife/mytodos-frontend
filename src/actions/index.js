@@ -10,6 +10,9 @@ import {
   removeRecentlyCompleted,
 } from "./recentlyCompleted.js";
 import { onTaskCompletion } from "./buttonFunctions.js";
+import { fetchTasksToday } from "./tasksToday.js";
+import { fetchTasksUpcoming } from "./tasksUpcoming.js";
+
 export {
   createUser,
   loginUser,
@@ -25,4 +28,6 @@ export {
   removeRecentlyCompleted,
   onTaskCompletion,
   removeDeleteTaskError,
+  fetchTasksToday,
+  fetchTasksUpcoming,
 };

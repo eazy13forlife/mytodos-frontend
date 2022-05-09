@@ -8,6 +8,8 @@ import tasksReducer from "./tasksReducer.js";
 import taskCreationErrorsReducer from "./taskCreationErrorsReducer.js";
 import recentlyCompletedReducer from "./recentlyCompletedReducer.js";
 import deleteTaskErrorReducer from "./deleteTaskErrorReducer.js";
+import tasksTodayReducer from "./tasksTodayReducer.js";
+import tasksUpcomingReducer from "./tasksUpcomingReducer.js";
 
 export default combineReducers({
   userInfo: userReducer,
@@ -18,4 +20,6 @@ export default combineReducers({
   taskCreationErrorsBackend: taskCreationErrorsReducer,
   recentlyCompleted: recentlyCompletedReducer,
   deleteTaskError: deleteTaskErrorReducer,
+  tasksToday: tasksTodayReducer,
+  tasksUpcoming: tasksUpcomingReducer,
 });

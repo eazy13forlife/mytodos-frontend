@@ -18,12 +18,12 @@ const EditTaskButton = ({ initialValues, id }) => {
   return (
     <>
       <button
-        className="TaskCard__button TaskCard__button-pencil"
+        className="TaskCard__button-pencil icon-button"
         onClick={() => {
           setShowEditTaskModal(true);
         }}
       >
-        <BsPencil className="TaskCard__icon TaskCard__icon-pencil" />
+        <BsPencil className="TaskCard__icon" />
       </button>
 
       {showEditTaskModal && (

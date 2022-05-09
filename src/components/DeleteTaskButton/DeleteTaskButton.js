@@ -10,12 +10,12 @@ const DeleteTaskButton = ({ title, id }) => {
   return (
     <>
       <button
-        className="TaskCard__button TaskCard__button-trash"
+        className="TaskCard__button-trash icon-button"
         onClick={() => {
           setShowDeleteModal(true);
         }}
       >
-        <BsTrash className="TaskCard__icon TaskCard__icon-trash" />
+        <BsTrash className="TaskCard__icon" />
       </button>
 
       {showDeleteModal && (

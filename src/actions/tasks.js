@@ -1,6 +1,8 @@
 import axios from "axios";
 
 import types from "./types.js";
+import { fetchTasksToday } from "./tasksToday.js";
+import { fetchTasksUpcoming } from "./tasksUpcoming.js";
 import {
   throwTaskCreationError,
   removeTaskCreationError,
@@ -46,6 +48,12 @@ const createTask = (taskData) => {
 
       await dispatch(fetchTasks());
 
+      if (taskData.dueDate) {
+        await dispatch(fetchTasksToday());
+
+        await dispatch(fetchTasksUpcoming());
+      }
+
       dispatch(removeTaskCreationError());
     } catch (e) {
       dispatch(throwTaskCreationError(e.response.data));
@@ -67,8 +75,14 @@ const editTask = (taskId, taskData) => {
           },
         }
       );
-      console.log(data);
+
       await dispatch(fetchTasks());
+
+      if (taskData.dueDate) {
+        await dispatch(fetchTasksToday());
+
+        await dispatch(fetchTasksUpcoming());
+      }
 
       dispatch(removeTaskCreationError());
     } catch (e) {
@@ -89,6 +103,10 @@ const deleteTask = (taskId) => {
       });
 
       await dispatch(fetchTasks());
+
+      await dispatch(fetchTasksToday());
+
+      await dispatch(fetchTasksUpcoming());
 
       dispatch(removeDeleteTaskError());
     } catch (e) {

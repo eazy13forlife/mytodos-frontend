@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Router, Route } from "react-router-dom";
 import history from "./history.js";
 
+import PrivateRoute from "./components/PrivateRoute/";
+import SignedInRoute from "./components/SignedInRoute";
 import LandingPage from "./views/LandingPage";
 import Inbox from "./views/Inbox";
 import Login from "./views/Entry/Login/";
@@ -11,29 +14,33 @@ import Today from "./views/Today";
 import Upcoming from "./views/Upcoming";
 
 const App = () => {
+  const userInfo = useSelector((state) => {
+    return state.userInfo;
+  });
+
   return (
     <Router history={history}>
       <Route path="/" exact>
         <LandingPage />
       </Route>
-      <Route path="/signup" exact>
+      <SignedInRoute path="/signup" exact>
         <SignUp />
-      </Route>
-      <Route path="/login" exact>
+      </SignedInRoute>
+      <SignedInRoute path="/login" exact>
         <Login />
-      </Route>
-      <Route path="/inbox" exact>
+      </SignedInRoute>
+      <PrivateRoute path="/inbox" exact>
         <Inbox />
-      </Route>
-      <Route path="/today" exact>
+      </PrivateRoute>
+      <PrivateRoute path="/today" exact>
         <Today />
-      </Route>
-      <Route path="/upcoming" exact>
+      </PrivateRoute>
+      <PrivateRoute path="/upcoming" exact>
         <Upcoming />
-      </Route>
-      <Route path="/projects/:project-name" exact>
+      </PrivateRoute>
+      <PrivateRoute path="/projects/:project-name" exact>
         <Project />
-      </Route>
+      </PrivateRoute>
     </Router>
   );
 };
