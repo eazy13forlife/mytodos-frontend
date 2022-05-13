@@ -2,16 +2,6 @@
   position: relative;
   padding: 2rem;
   height: 100%;
-  &__heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(var(--color-dark), 1);
-    h2 {
-      font-weight: 400;
-    }
-  }
   &__label {
     display: block;
     margin-bottom: 0.5rem;
@@ -31,10 +21,6 @@
     grid-row-gap: 3rem;
     margin-top: 2rem;
   }
-  &__icon {
-    font-size: 4rem;
-  }
-
   &__group {
     position: relative;
     &--title {

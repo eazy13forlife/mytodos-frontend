@@ -13,4 +13,17 @@
     background-color: rgba(var(--color-light), 1);
     box-shadow: 0px 3rem 5rem rgba(var(--color-dark), 0.2);
   }
+  &__content-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(var(--color-dark), 1);
+    h2 {
+      font-weight: 400;
+    }
+  }
+  &__heading-icon {
+    font-size: 4rem;
+  }
 }

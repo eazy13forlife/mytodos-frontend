@@ -2,9 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import SidebarItem from "../SidebarItem/SidebarItem.js";
+import AddProjectButton from "../AddProjectButton/AddProjectButton.js";
 import { BsMailbox, BsCalendar2Date } from "react-icons/bs";
-import { AiOutlineCalendar } from "react-icons/ai";
-import { AiTwotoneFolderOpen } from "react-icons/ai";
+import { AiOutlineCalendar, AiTwotoneFolderOpen } from "react-icons/ai";
+
 import "./Sidebar.scss";
 
 const Sidebar = () => {
@@ -50,6 +51,7 @@ const Sidebar = () => {
         <AiTwotoneFolderOpen className="Sidebar__icon Sidebar__icon--folder" />
         Projects
       </h2>
+      <AddProjectButton />
     </nav>
   );
 };

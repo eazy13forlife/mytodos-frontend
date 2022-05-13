@@ -6,11 +6,11 @@ import withCreateTaskModal from "../HOC.js";
 
 const AddTaskButton = ({ onClick }) => {
   return (
-    <button className="AddTaskButton" onClick={onClick}>
-      <span className="AddTaskButton__icon-wrapper">
-        <BsPlusLg className="AddTaskButton__icon" />
+    <button className="AddTaskButton icon-text-button" onClick={onClick}>
+      <span className="icon-text-button__icon-wrapper">
+        <BsPlusLg className="icon-text-button__icon" />
       </span>
-      <span className="AddTaskButton__text">Add task</span>
+      <span className="icon-text-button__text">Add task</span>
     </button>
   );
 };

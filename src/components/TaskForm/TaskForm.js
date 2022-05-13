@@ -51,14 +51,14 @@ const TaskForm = ({
         }}
       >
         <Form>
-          <div className="TaskForm__heading">
+          <div className="Modal__content-heading">
             {role === "create" ? <h2>Create Task</h2> : <h2>Edit Task</h2>}
             <button
               type="button"
               className="icon-button"
               onClick={onCloseClick}
             >
-              <AiOutlineClose className="TaskForm__icon" />
+              <AiOutlineClose className="Modal__heading-icon" />
             </button>
           </div>
 

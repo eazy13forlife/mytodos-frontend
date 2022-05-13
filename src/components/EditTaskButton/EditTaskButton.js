@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { BsPencil } from "react-icons/bs";
 
-import { editTask } from "../../actions";
+import { editTask, removeTaskCreationError } from "../../actions";
 import Modal from "../Modal/Modal.js";
 import TaskForm from "../TaskForm/TaskForm.js";
 
@@ -13,6 +13,11 @@ const EditTaskButton = ({ initialValues, id }) => {
 
   const onUpdateTask = async (taskData) => {
     dispatch(editTask(id, taskData));
+  };
+
+  const onEditTaskClose = () => {
+    dispatch(removeTaskCreationError());
+    setShowEditTaskModal(false);
   };
 
   return (
@@ -33,6 +38,7 @@ const EditTaskButton = ({ initialValues, id }) => {
             initialValues={initialValues}
             sendData={onUpdateTask}
             showModal={setShowEditTaskModal}
+            onCloseClick={onEditTaskClose}
           />
         </Modal>
       )}
