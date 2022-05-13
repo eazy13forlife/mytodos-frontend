@@ -8,6 +8,7 @@ import ErrorBox from "../ErrorBox/ErrorBox.js";
 import TaskCard from "../TaskCard/TaskCard.js";
 import TaskCompletedBox from "../TaskCompletedBox/TaskCompletedBox.js";
 import useDelayUnmount from "../../hooks/useDelayUnmount.js";
+import AddTaskButton from "../AddTaskButton/AddTaskButton.js";
 import { onTaskCompletion } from "../../actions/";
 
 import "./MyTodosMain.scss";
@@ -39,26 +40,30 @@ const MyTodosMain = ({ title, tasks }) => {
     };
   }, [recentlyCompleted]);
 
-  const renderedTasks = tasks.map((task) => {
-    const { title, priority, _id: id, description, project, dueDate } = task;
+  let renderedTasks;
 
-    //if a task was just checked for being completed, don't render it
-    if (id !== recentlyCompleted) {
-      return (
-        <TaskCard
-          title={title}
-          priority={priority}
-          dueDate={dueDate}
-          description={description}
-          project={project}
-          key={id}
-          id={id}
-        />
-      );
-    } else {
-      return null;
-    }
-  });
+  if (tasks !== "error") {
+    renderedTasks = tasks.map((task) => {
+      const { title, priority, _id: id, description, project, dueDate } = task;
+
+      //if a task was just checked for being completed, don't render it
+      if (id !== recentlyCompleted) {
+        return (
+          <TaskCard
+            title={title}
+            priority={priority}
+            dueDate={dueDate}
+            description={description}
+            project={project}
+            key={id}
+            id={id}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+  }
 
   return (
     <main className="Todos__content">
@@ -76,7 +81,15 @@ const MyTodosMain = ({ title, tasks }) => {
         </div>
       </div>
 
-      {renderedTasks}
+      {tasks !== "error" ? (
+        renderedTasks
+      ) : (
+        <p className="Todos__error-message color-error">
+          Error loading tasks. Try again later.
+        </p>
+      )}
+
+      <AddTaskButton />
 
       {/*component is actually removed from screen(unmounted) 500ms after the mount indicator recentlyCompleted is false. This means until it is actually unmounted, we can add a style that that will remove this item visually from screen(like opacity) within the 500ms we have until it is actually unmounted*/}
       {mountTaskCompletedBox && (

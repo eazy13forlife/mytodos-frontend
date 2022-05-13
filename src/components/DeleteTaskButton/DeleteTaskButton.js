@@ -7,6 +7,8 @@ import DeleteTaskContent from "../DeleteTaskContent/DeleteTaskContent.js";
 const DeleteTaskButton = ({ title, id }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  const restrictedTitle =
+    title.length > 40 ? `${title.substring(0, 39)}...` : title;
   return (
     <>
       <button
@@ -21,7 +23,7 @@ const DeleteTaskButton = ({ title, id }) => {
       {showDeleteModal && (
         <Modal width="45rem">
           <DeleteTaskContent
-            title={title}
+            title={restrictedTitle}
             id={id}
             onCloseClick={setShowDeleteModal}
           />

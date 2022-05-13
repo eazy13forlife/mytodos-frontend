@@ -26,6 +26,8 @@ const createUser = (userData) => {
       dispatch(removeSignUpErrors());
     } catch (e) {
       dispatch(throwSignUpErrors(e.response.data));
+
+      return "error";
     }
   };
 };
@@ -50,6 +52,8 @@ const loginUser = (userData) => {
       }
     } catch (e) {
       dispatch(throwLoginError());
+
+      return "error";
     }
   };
 };

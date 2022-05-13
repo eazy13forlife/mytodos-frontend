@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Router } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import history from "./history.js";
 
 import PrivateRoute from "./components/PrivateRoute/";

@@ -7,7 +7,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 5rem;
   }
   &__filter-and-sort {
     display: flex;
@@ -27,4 +26,14 @@
   &__action-button-text {
     margin-left: 0.5rem;
   }
+  &__error-message {
+    margin-top: 3rem;
+  }
+  &__content .AddTaskButton {
+    margin-top: 2rem;
+  }
+}
+
+.Todos__heading + .TaskCard {
+  margin-top: 5rem;
 }

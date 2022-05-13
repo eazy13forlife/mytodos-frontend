@@ -8,6 +8,7 @@ import {
   removeTaskCreationError,
   throwDeleteTaskError,
   removeDeleteTaskError,
+  throwFetchAllTasksError,
 } from "./errors";
 
 const fetchTasks = () => {
@@ -26,7 +27,7 @@ const fetchTasks = () => {
         payload: allTasks.data,
       });
     } catch (e) {
-      console.log(e);
+      dispatch(throwFetchAllTasksError());
     }
   };
 };

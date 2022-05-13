@@ -21,26 +21,25 @@ const LogoutButton = () => {
 
   useEffect(() => {
     if (clickLogout) {
-      if (!logoutErrorBackend) {
-        history.push("/");
-      } else {
-        clearTimeout(timerId);
+      clearTimeout(timerId);
 
-        setClickLogout(false);
+      setClickLogout(false);
 
-        setShowErrorBox(true);
+      setShowErrorBox(true);
 
-        timerId = setTimeout(() => {
-          setShowErrorBox(false);
-        }, 5000);
-      }
+      timerId = setTimeout(() => {
+        setShowErrorBox(false);
+      }, 5000);
     }
   }, [clickLogout]);
 
   const onLogoutClick = async () => {
-    await dispatch(logoutUser());
+    const response = await dispatch(logoutUser());
 
-    setClickLogout(true);
+    //if there is no error we go to "/" page before the setClickLogout code below will run. In that case, we will get an error saying that we can't performa  react state update on an unmounted component
+    if (response === "error") {
+      setClickLogout(true);
+    }
   };
 
   const onLogoutClickMemo = useMemo(() => {

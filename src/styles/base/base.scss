@@ -54,6 +54,10 @@ select {
   border: 1px solid rgba(var(--color-dark));
 }
 
+button {
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

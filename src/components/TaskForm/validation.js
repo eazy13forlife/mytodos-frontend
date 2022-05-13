@@ -28,7 +28,10 @@ const dueDateValidator = function (date) {
 };
 
 const taskSchema = yup.object().shape({
-  title: yup.string().required("Required"),
+  title: yup
+    .string()
+    .required("Required")
+    .length(500, "Title must be less than 500 characters"),
   description: yup.string(),
   priority: yup.string(),
   project: yup.string(),

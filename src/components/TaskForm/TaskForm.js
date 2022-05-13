@@ -8,7 +8,13 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import "./TaskForm.scss";
 
-const TaskForm = ({ role, showModal, initialValues, sendData }) => {
+const TaskForm = ({
+  role,
+  showModal,
+  initialValues,
+  sendData,
+  onCloseClick,
+}) => {
   const dispatch = useDispatch();
 
   const projects = useSelector((state) => {
@@ -50,9 +56,7 @@ const TaskForm = ({ role, showModal, initialValues, sendData }) => {
             <button
               type="button"
               className="icon-button"
-              onClick={() => {
-                showModal(false);
-              }}
+              onClick={onCloseClick}
             >
               <AiOutlineClose className="TaskForm__icon" />
             </button>

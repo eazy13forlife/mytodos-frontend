@@ -100,6 +100,23 @@ const removeDeleteTaskError = () => {
   };
 };
 
+const throwFetchAllTasksError = () => {
+  return {
+    type: types.THROW_FETCH_ALL_TASKS_ERROR,
+  };
+};
+
+const throwFetchTasksTodayError = () => {
+  return {
+    type: types.THROW_FETCH_TASKS_TODAY_ERROR,
+  };
+};
+
+const throwFetchTasksUpcomingError = () => {
+  return {
+    type: types.THROW_FETCH_TASKS_UPCOMING_ERROR,
+  };
+};
 export {
   throwSignUpErrors,
   throwLoginError,
@@ -111,4 +128,7 @@ export {
   removeTaskCreationError,
   throwDeleteTaskError,
   removeDeleteTaskError,
+  throwFetchAllTasksError,
+  throwFetchTasksTodayError,
+  throwFetchTasksUpcomingError,
 };

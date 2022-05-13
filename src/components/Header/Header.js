@@ -11,7 +11,10 @@ const Header = () => {
       <nav className="Header__nav">
         <ul className="Header__nav-list">
           <li className="Header__item">
-            <CreateTaskButton />
+            <CreateTaskButton
+              buttonClass="Header__button"
+              iconClass="Header__icon"
+            />
           </li>
           <li className="Header__item">
             <LogoutButton />

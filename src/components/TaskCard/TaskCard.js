@@ -27,6 +27,9 @@ const TaskCard = ({ title, priority, description, project, dueDate, id }) => {
     completed: false,
   };
 
+  const restrictedTitle =
+    title.length > 300 ? `${title.substring(0, 299)}...` : title;
+
   const formattedDate = dueDate ? moment(dueDate).format("MMMM Do, YYYY") : "";
 
   const onCompletedCheck = async (e) => {
@@ -56,7 +59,7 @@ const TaskCard = ({ title, priority, description, project, dueDate, id }) => {
           </span>
         </label>
 
-        <h2 className="TaskCard__title">{title}</h2>
+        <h2 className="TaskCard__title">{restrictedTitle}</h2>
 
         {priority ? (
           <BsFlag

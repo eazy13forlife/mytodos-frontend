@@ -12,12 +12,7 @@ import "../index.scss";
 let signUpErrors = {};
 
 const SignUp = () => {
-  console.log("i just rerendered");
   const dispatch = useDispatch();
-
-  const userInfo = useSelector((state) => {
-    return state.userInfo;
-  });
 
   const signUpErrorsBackend = useSelector((state) => {
     return state.signUpErrorsBackend;
@@ -33,16 +28,18 @@ const SignUp = () => {
 
   const [clickSignUp, setClickSignUp] = useState(false);
 
-  //if clickSignUp is true and no formErrors(from backend and frontend), let's go to inbox page. Otherwise, setClickSignUp needs to be false,and we try again.
+  /*
+  //if clickSignUp is true and no formErrors(from backend and frontend), let's go to inbox page.Butwe have a route that immediately takes us to inbox when userInfo exists, so that will run before this useEffect runs Otherwise, setClickSignUp needs to be false,and we try again.
   useEffect(() => {
     if (clickSignUp) {
-      if (userInfo) {
+      if (!signUpErrorsBackend) {
         history.push("/inbox");
       } else {
         setClickSignUp(false);
       }
     }
   }, [clickSignUp]);
+*/
 
   //whenever signUpErrorsBackend changes,change global signUpErrors to equal these new errors (since it is our main truth of current errors) and then we update our formErrors state to equal this global signUpErrors
   useEffect(() => {
@@ -68,8 +65,9 @@ const SignUp = () => {
 
     // We can't automatically check formErrors to see if empty because setState does not always immediately update the component, so refer instead to global signUpErrors state to see if we do or don't have errors.
     if (!Object.keys(signUpErrors).length) {
+      //if user is created without any errors, our SignedInRoute will take unmount this component and take us to inbox page.
       await dispatch(createUser(formData));
-      setClickSignUp(true);
+      //only if error will we stay on this page.Because if no error,userInfo will exist and our signedIn route will take us right to /inbox. But if we didn't have the signedInROute we would need to setClick to true, and when click is true, if no errors go to /inbox.If error stay on page and also set click back to false so we can reclick.
     }
   };
 

@@ -3,6 +3,7 @@ import {
   throwSignUpErrors,
   removeLoginError,
   removeDeleteTaskError,
+  removeTaskCreationError,
 } from "./errors.js";
 import { createTask, fetchTasks, editTask, deleteTask } from "./tasks.js";
 import {
@@ -30,4 +31,5 @@ export {
   removeDeleteTaskError,
   fetchTasksToday,
   fetchTasksUpcoming,
+  removeTaskCreationError,
 };
