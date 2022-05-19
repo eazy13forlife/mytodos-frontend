@@ -43,6 +43,7 @@ const MyTodosMain = ({ title, tasks }) => {
   let renderedTasks;
 
   if (tasks !== "error") {
+    console.log(tasks);
     renderedTasks = tasks.map((task) => {
       const { title, priority, _id: id, description, project, dueDate } = task;
 

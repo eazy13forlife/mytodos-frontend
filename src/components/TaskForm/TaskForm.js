@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
+import { createSelector } from "reselect";
+import { AiOutlineClose } from "react-icons/ai";
 
 import { TextInput, TextArea, SelectBox } from "./inputComponents.js";
 import taskValidation from "./validation.js";
-import { AiOutlineClose } from "react-icons/ai";
-
 import "./TaskForm.scss";
 
+const getAllProjects = createSelector(
+  (state) => state.projects,
+  (allProjects) => {
+    const projects = [];
+
+    allProjects.allIds.forEach((id) => {
+      const { _id: projectId, title: projectTitle } = allProjects.byId[id];
+      projects.push({ projectId, projectTitle });
+    });
+
+    return projects;
+  }
+);
 const TaskForm = ({
   role,
   showModal,
@@ -15,11 +28,8 @@ const TaskForm = ({
   sendData,
   onCloseClick,
 }) => {
-  const dispatch = useDispatch();
-
-  const projects = useSelector((state) => {
-    return state.projects;
-  });
+  const projects = useSelector(getAllProjects);
+  console.log(projects);
 
   //return the first one that is truthy. By default taskCreationErrorsBackend is null(falsy)
   const errorsBackend = useSelector((state) => {
@@ -40,12 +50,29 @@ const TaskForm = ({
     }
   }, [clickedCreate]);
 
+  const renderedProjectOptions = projects.map((project) => {
+    const { projectId, projectTitle } = project;
+
+    return (
+      <option
+        value={projectId}
+        className="TaskForm__select-value"
+        key={projectId}
+      >
+        {projectTitle}
+      </option>
+    );
+  });
+
   return (
     <div className="TaskForm">
       <Formik
         initialValues={initialValues}
         validationSchema={taskValidation}
         onSubmit={async (values) => {
+          if (!values.project) {
+            delete values.project;
+          }
           await sendData(values);
           setClickedCreate(true);
         }}
@@ -100,15 +127,7 @@ const TaskForm = ({
               <option value="" className="TaskForm__select-value">
                 None
               </option>
-              <option value="project1" className="TaskForm__select-value">
-                Project 1
-              </option>
-              <option value="project2" className="TaskForm__select-value">
-                Project 2
-              </option>
-              <option value="project3" className="TaskForm__select-value">
-                Project 3
-              </option>
+              {renderedProjectOptions}
             </SelectBox>
 
             <TextInput

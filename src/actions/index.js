@@ -5,7 +5,13 @@ import {
   removeDeleteTaskError,
   removeTaskCreationError,
 } from "./errors.js";
-import { createTask, fetchTasks, editTask, deleteTask } from "./tasks.js";
+import {
+  createTask,
+  fetchTasks,
+  editTask,
+  deleteTask,
+  fetchTask,
+} from "./tasks.js";
 import {
   addRecentlyCompleted,
   removeRecentlyCompleted,
@@ -13,7 +19,19 @@ import {
 import { onTaskCompletion } from "./buttonFunctions.js";
 import { fetchTasksToday } from "./tasksToday.js";
 import { fetchTasksUpcoming } from "./tasksUpcoming.js";
-
+import {
+  createProject,
+  editProject,
+  deleteProject,
+  fetchProject,
+  fetchProjects,
+} from "./projects.js";
+import {
+  adjustAllTasks,
+  adjustTasksToday,
+  adjustTasksUpcoming,
+  adjustTasksProject,
+} from "./sortsAndFilters.js";
 export {
   createUser,
   loginUser,
@@ -23,6 +41,7 @@ export {
   logoutUser,
   createTask,
   fetchTasks,
+  fetchTask,
   editTask,
   deleteTask,
   addRecentlyCompleted,
@@ -32,4 +51,13 @@ export {
   fetchTasksToday,
   fetchTasksUpcoming,
   removeTaskCreationError,
+  createProject,
+  editProject,
+  deleteProject,
+  fetchProject,
+  fetchProjects,
+  adjustAllTasks,
+  adjustTasksToday,
+  adjustTasksUpcoming,
+  adjustTasksProject,
 };

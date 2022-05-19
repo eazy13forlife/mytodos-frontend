@@ -1,9 +1,13 @@
 .Sidebar {
   background-color: rgba(var(--color-primary-light), 1);
-  padding: 4rem 0rem 5rem 5rem;
+  padding: 4rem 0rem 5rem 3rem;
   &__main-options {
     list-style-type: none;
   }
+  &__project-options {
+    margin-left: 0.7rem;
+  }
+
   &__header {
     font-size: var(--fs-550);
     padding-left: 1rem;
@@ -15,6 +19,6 @@
   }
   .AddProjectButton {
     margin-top: 1.5rem;
-    margin-left: 2rem;
+    margin-left: 0.7rem;
   }
 }

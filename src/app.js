@@ -12,7 +12,7 @@ import Project from "./views/Project";
 import SignUp from "./views/Entry/SignUp";
 import Today from "./views/Today";
 import Upcoming from "./views/Upcoming";
-import { fetchTasks, fetchTasksToday, fetchTasksUpcoming } from "./actions/";
+import { fetchProjects, fetchTasks } from "./actions/";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,11 +22,15 @@ const App = () => {
   });
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(fetchTasks());
-      dispatch(fetchTasksToday());
-      dispatch(fetchTasksUpcoming());
-    }
+    const loadData = async () => {
+      if (isLoggedIn) {
+        //we get all projects firsts and then tasks, so tasks can live in the projects
+        await dispatch(fetchProjects());
+        await dispatch(fetchTasks());
+      }
+    };
+
+    loadData();
   }, [isLoggedIn]);
 
   return (
@@ -49,7 +53,7 @@ const App = () => {
       <PrivateRoute path="/upcoming" exact>
         <Upcoming />
       </PrivateRoute>
-      <PrivateRoute path="/projects/:project-name" exact>
+      <PrivateRoute path="/projects/:projectId" exact>
         <Project />
       </PrivateRoute>
     </Router>

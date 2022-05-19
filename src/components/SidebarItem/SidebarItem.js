@@ -8,7 +8,7 @@ const SidebarItem = ({ link, icon, itemName, count }) => {
     <li className="Sidebar__item">
       <Link to={link} className="Sidebar__link">
         {icon}
-        <span className="capitalize">{itemName}</span>
+        <span className="Sidebar__name capitalize">{itemName}</span>
         <span className="Sidebar__count">{count}</span>
       </Link>
     </li>

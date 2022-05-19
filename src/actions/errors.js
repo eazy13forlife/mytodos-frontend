@@ -117,6 +117,30 @@ const throwFetchTasksUpcomingError = () => {
     type: types.THROW_FETCH_TASKS_UPCOMING_ERROR,
   };
 };
+
+const throwCreateProjectError = (responseData) => {
+  const errors = {};
+
+  if (responseData.errors) {
+    const fields = Object.keys(responseData.errors);
+
+    fields.forEach((field) => {
+      errors[field] = responseData.errors[field].message;
+    });
+
+    return {
+      type: types.THROW_CREATE_PROJECT_ERROR,
+      payload: errors,
+    };
+  }
+};
+
+const removeCreateProjectError = () => {
+  return {
+    type: types.REMOVE_CREATE_PROJECT_ERROR,
+  };
+};
+
 export {
   throwSignUpErrors,
   throwLoginError,
@@ -131,4 +155,6 @@ export {
   throwFetchAllTasksError,
   throwFetchTasksTodayError,
   throwFetchTasksUpcomingError,
+  throwCreateProjectError,
+  removeCreateProjectError,
 };

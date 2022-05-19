@@ -16,7 +16,7 @@ const fetchTasks = () => {
     try {
       const userInfo = getState().userInfo;
 
-      const allTasks = await axios.get("http://localhost:3000/tasks", {
+      const response = await axios.get("http://localhost:3000/tasks", {
         headers: {
           authorization: `bearer ${userInfo.token}`,
         },
@@ -24,7 +24,7 @@ const fetchTasks = () => {
 
       dispatch({
         type: types.FETCH_ALL_TASKS,
-        payload: allTasks.data,
+        payload: response.data,
       });
     } catch (e) {
       dispatch(throwFetchAllTasksError());
@@ -37,7 +37,7 @@ const createTask = (taskData) => {
     try {
       const userInfo = getState().userInfo;
 
-      const createdTask = await axios.post(
+      const response = await axios.post(
         "http://localhost:3000/tasks",
         taskData,
         {
@@ -47,13 +47,10 @@ const createTask = (taskData) => {
         }
       );
 
-      await dispatch(fetchTasks());
-
-      if (taskData.dueDate) {
-        await dispatch(fetchTasksToday());
-
-        await dispatch(fetchTasksUpcoming());
-      }
+      dispatch({
+        type: types.CREATE_TASK,
+        payload: response.data,
+      });
 
       dispatch(removeTaskCreationError());
     } catch (e) {
@@ -67,7 +64,7 @@ const editTask = (taskId, taskData) => {
     try {
       const userInfo = getState().userInfo;
 
-      const data = await axios.patch(
+      const response = await axios.patch(
         `http://localhost:3000/tasks/${taskId}`,
         taskData,
         {
@@ -77,13 +74,13 @@ const editTask = (taskId, taskData) => {
         }
       );
 
-      await dispatch(fetchTasks());
-
-      if (taskData.dueDate) {
-        await dispatch(fetchTasksToday());
-
-        await dispatch(fetchTasksUpcoming());
-      }
+      dispatch({
+        type: types.EDIT_TASK,
+        payload: {
+          originalTask: taskData,
+          editedTask: response.data,
+        },
+      });
 
       dispatch(removeTaskCreationError());
     } catch (e) {
@@ -97,17 +94,19 @@ const deleteTask = (taskId) => {
     try {
       const userInfo = getState().userInfo;
 
-      await axios.delete(`http://localhost:3000/tasks/${taskId}`, {
-        headers: {
-          authorization: `bearer ${userInfo.token}`,
-        },
+      const response = await axios.delete(
+        `http://localhost:3000/tasks/${taskId}`,
+        {
+          headers: {
+            authorization: `bearer ${userInfo.token}`,
+          },
+        }
+      );
+
+      dispatch({
+        type: types.DELETE_TASK,
+        payload: response.data,
       });
-
-      await dispatch(fetchTasks());
-
-      await dispatch(fetchTasksToday());
-
-      await dispatch(fetchTasksUpcoming());
 
       dispatch(removeDeleteTaskError());
     } catch (e) {
@@ -118,4 +117,17 @@ const deleteTask = (taskId) => {
   };
 };
 
-export { createTask, fetchTasks, editTask, deleteTask };
+const fetchTask = (taskId) => {
+  return async (dispatch, getState) => {
+    const userInfo = getState().userInfo;
+
+    const response = await axios.get(`http://localhost:3000/tasks/${taskId}`);
+
+    dispatch({
+      type: types.FETCH_TASK,
+      payload: response.data,
+    });
+  };
+};
+
+export { createTask, fetchTasks, editTask, deleteTask, fetchTask };
