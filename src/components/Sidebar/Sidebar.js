@@ -8,6 +8,7 @@ import AddProjectButton from "../AddProjectButton/AddProjectButton.js";
 import { BsMailbox, BsCalendar2Date } from "react-icons/bs";
 import { AiOutlineCalendar, AiTwotoneFolderOpen } from "react-icons/ai";
 import { GrDocument } from "react-icons/gr";
+import EllipsesButton from "../EllipsesButton/EllipsesButton.js";
 
 import "./Sidebar.scss";
 
@@ -68,6 +69,8 @@ const Sidebar = () => {
         itemName={shortenedTitle}
         count={tasks.length}
         key={project._id}
+        type="project"
+        id={id}
         icon={<GrDocument className="Sidebar__icon Sidebar__icon--document" />}
       />
     );
@@ -78,14 +81,14 @@ const Sidebar = () => {
       <ul className="Sidebar__main-options">
         <SidebarItem
           link="/inbox"
-          itemName="inbox"
+          itemName="Inbox"
           count={inboxCount}
           icon={<BsMailbox className="Sidebar__icon Sidebar__icon--mailbox" />}
         />
 
         <SidebarItem
           link="/today"
-          itemName="today"
+          itemName="Today"
           count={todayCount}
           icon={
             <AiOutlineCalendar className="Sidebar__icon Sidebar__icon--calendar" />
@@ -94,7 +97,7 @@ const Sidebar = () => {
 
         <SidebarItem
           link="/upcoming"
-          itemName="upcoming"
+          itemName="Upcoming"
           count={upcomingCount}
           icon={
             <BsCalendar2Date className="Sidebar__icon Sidebar__icon--upcoming-calendar" />
@@ -109,7 +112,7 @@ const Sidebar = () => {
 
       <ul className="Sidebar__project-options">{renderedProjects}</ul>
 
-      <AddProjectButton />
+      <AddProjectButton role="create" initialValues={{ title: "" }} />
     </nav>
   );
 };

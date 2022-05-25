@@ -14,6 +14,7 @@ import isLoggedInReducer from "./isLoggedInReducer.js";
 import projectsReducer from "./projectsReducer";
 import tasksAdjustmentReducer from "./tasksAdjustmentReducer.js";
 import projectCreationErrorsReducer from "./projectCreationErrorReducer.js";
+import deleteProjectErrorReducer from "./deleteProjectErrorReducer.js";
 
 export default combineReducers({
   userInfo: userReducer,
@@ -30,4 +31,5 @@ export default combineReducers({
   projects: projectsReducer,
   tasksAdjustment: tasksAdjustmentReducer,
   projectCreationErrorsBackend: projectCreationErrorsReducer,
+  deleteProjectErrorBackend: deleteProjectErrorReducer,
 });

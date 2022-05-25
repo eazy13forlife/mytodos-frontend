@@ -5,45 +5,14 @@ import { BsPencil } from "react-icons/bs";
 import { editTask, removeTaskCreationError } from "../../actions";
 import Modal from "../Modal/Modal.js";
 import TaskForm from "../TaskForm/TaskForm.js";
+import withCreateTaskModal from "../../HOC/withUpdateTaskModal.js";
 
-const EditTaskButton = ({ initialValues, id }) => {
-  const dispatch = useDispatch();
-
-  const [showEditTaskModal, setShowEditTaskModal] = useState(false);
-
-  const onUpdateTask = async (taskData) => {
-    dispatch(editTask(id, taskData));
-  };
-
-  const onEditTaskClose = () => {
-    dispatch(removeTaskCreationError());
-    setShowEditTaskModal(false);
-  };
-
+const EditTaskButton = ({ onClick }) => {
   return (
-    <>
-      <button
-        className="TaskCard__button-pencil icon-button"
-        onClick={() => {
-          setShowEditTaskModal(true);
-        }}
-      >
-        <BsPencil className="TaskCard__icon" />
-      </button>
-
-      {showEditTaskModal && (
-        <Modal width="70rem">
-          <TaskForm
-            role="edit"
-            initialValues={initialValues}
-            sendData={onUpdateTask}
-            showModal={setShowEditTaskModal}
-            onCloseClick={onEditTaskClose}
-          />
-        </Modal>
-      )}
-    </>
+    <button className="TaskCard__button-pencil icon-button" onClick={onClick}>
+      <BsPencil className="TaskCard__icon" />
+    </button>
   );
 };
 
-export default EditTaskButton;
+export default withCreateTaskModal(EditTaskButton);

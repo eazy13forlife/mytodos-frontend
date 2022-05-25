@@ -23,6 +23,9 @@ const MyTodosMain = ({ title, tasks }) => {
   const deleteTaskError = useSelector((state) => {
     return state.deleteTaskError;
   });
+  const deleteProjectError = useSelector((state) => {
+    return state.deleteProjectErrorBackend;
+  });
 
   //recentlyCompleted will be our mount indicator. If true, that means item should be mounted, if false, item should be unmounted
   const mountTaskCompletedBox = useDelayUnmount(recentlyCompleted, 500);
@@ -43,7 +46,6 @@ const MyTodosMain = ({ title, tasks }) => {
   let renderedTasks;
 
   if (tasks !== "error") {
-    console.log(tasks);
     renderedTasks = tasks.map((task) => {
       const { title, priority, _id: id, description, project, dueDate } = task;
 
@@ -90,7 +92,17 @@ const MyTodosMain = ({ title, tasks }) => {
         </p>
       )}
 
-      <AddTaskButton />
+      <AddTaskButton
+        role="create"
+        initialValues={{
+          title: "",
+          description: "",
+          priority: "",
+          project: "",
+          dueDate: "",
+          completed: false,
+        }}
+      />
 
       {/*component is actually removed from screen(unmounted) 500ms after the mount indicator recentlyCompleted is false. This means until it is actually unmounted, we can add a style that that will remove this item visually from screen(like opacity) within the 500ms we have until it is actually unmounted*/}
       {mountTaskCompletedBox && (
@@ -98,6 +110,7 @@ const MyTodosMain = ({ title, tasks }) => {
       )}
 
       {deleteTaskError && <ErrorBox message="Unable to delete" />}
+      {deleteProjectError && <ErrorBox message="Unable to delete" />}
     </main>
   );
 };

@@ -1,7 +1,12 @@
 import types from "./types.js";
 import axios from "axios";
 
-import { throwCreateProjectError, removeCreateProjectError } from "./errors.js";
+import {
+  throwCreateProjectError,
+  removeCreateProjectError,
+  throwDeleteProjectError,
+  removeDeleteProjectError,
+} from "./errors.js";
 
 const createProject = (projectData) => {
   return async (dispatch, getState) => {
@@ -49,8 +54,11 @@ const editProject = (projectId, projectData) => {
         type: types.EDIT_PROJECT,
         payload: response.data,
       });
+
+      dispatch(removeCreateProjectError());
     } catch (e) {
       console.log(e);
+      dispatch(throwCreateProjectError(e.response.data));
     }
   };
 };
@@ -97,8 +105,13 @@ const deleteProject = (projectId) => {
         type: types.DELETE_PROJECT,
         payload: projectId,
       });
+
+      dispatch(removeDeleteProjectError());
     } catch (e) {
       console.log(e);
+      dispatch(throwDeleteProjectError());
+
+      return "error";
     }
   };
 };

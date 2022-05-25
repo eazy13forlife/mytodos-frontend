@@ -2,7 +2,7 @@ import React from "react";
 
 import { BsPlusLg } from "react-icons/bs";
 import "./AddTaskButton.scss";
-import withCreateTaskModal from "../HOC.js";
+import withUpdateTaskModal from "../../HOC/withUpdateTaskModal.js";
 
 const AddTaskButton = ({ onClick }) => {
   return (
@@ -15,4 +15,4 @@ const AddTaskButton = ({ onClick }) => {
   );
 };
 
-export default withCreateTaskModal(AddTaskButton);
+export default withUpdateTaskModal(AddTaskButton);

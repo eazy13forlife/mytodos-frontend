@@ -21,15 +21,8 @@ const getAllProjects = createSelector(
     return projects;
   }
 );
-const TaskForm = ({
-  role,
-  showModal,
-  initialValues,
-  sendData,
-  onCloseClick,
-}) => {
+const TaskForm = ({ role, closeModal, initialValues, sendData }) => {
   const projects = useSelector(getAllProjects);
-  console.log(projects);
 
   //return the first one that is truthy. By default taskCreationErrorsBackend is null(falsy)
   const errorsBackend = useSelector((state) => {
@@ -42,7 +35,7 @@ const TaskForm = ({
     if (clickedCreate) {
       //if no backend errors, we're good, so lets close modal. This will unmount my modal, so I dont need to set clickedCreate to false,because when it mounts, it will use initial state again.
       if (!Object.keys(errorsBackend).length) {
-        showModal(false);
+        closeModal();
         //otherwise, if there is error, we need to set clickedCreate to false, so when we click createTask again and no backend errors, the modal will close
       } else {
         setClickedCreate(false);
@@ -80,11 +73,7 @@ const TaskForm = ({
         <Form>
           <div className="Modal__content-heading">
             {role === "create" ? <h2>Create Task</h2> : <h2>Edit Task</h2>}
-            <button
-              type="button"
-              className="icon-button"
-              onClick={onCloseClick}
-            >
+            <button type="button" className="icon-button" onClick={closeModal}>
               <AiOutlineClose className="Modal__heading-icon" />
             </button>
           </div>

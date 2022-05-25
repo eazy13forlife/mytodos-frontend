@@ -1,0 +1,22 @@
+.EllipsesButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 1rem 0.5rem;
+
+  &:hover {
+    background-color: rgba(var(--color-dark), 0.5);
+  }
+  &__circle {
+    height: 3px;
+    width: 3px;
+    border-radius: 100%;
+
+    background-color: rgba(var(--color-dark), 1);
+    &:not(:first-child) {
+      margin-left: 0.5rem;
+    }
+  }
+}

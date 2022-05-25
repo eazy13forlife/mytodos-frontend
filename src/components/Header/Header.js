@@ -14,6 +14,15 @@ const Header = () => {
             <CreateTaskButton
               buttonClass="Header__button"
               iconClass="Header__icon"
+              role="create"
+              initialValues={{
+                title: "",
+                description: "",
+                priority: "",
+                project: "",
+                dueDate: "",
+                completed: false,
+              }}
             />
           </li>
           <li className="Header__item">

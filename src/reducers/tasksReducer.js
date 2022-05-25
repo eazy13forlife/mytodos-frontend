@@ -37,7 +37,7 @@ const tasksReducer = (state = tasks, action) => {
       return newTasks;
     }
     case types.EDIT_TASK: {
-      const task = action.payload;
+      const task = action.payload.editedTask;
 
       const newTasks = {
         ...state,

@@ -5,7 +5,7 @@ import { GiCheckMark } from "react-icons/gi";
 import moment from "moment";
 
 import Modal from "../Modal/Modal.js";
-import DeleteTaskContent from "../DeleteTaskContent/DeleteTaskContent.js";
+import DeleteTaskContent from "../DeleteItemContent/DeleteItemContent.js";
 import EditTaskButton from "../EditTaskButton/EditTaskButton.js";
 import DeleteTaskButton from "../DeleteTaskButton/DeleteTaskButton.js";
 import { addRecentlyCompleted, onTaskCompletion } from "../../actions/";
@@ -69,7 +69,7 @@ const TaskCard = ({ title, priority, description, project, dueDate, id }) => {
 
         <span className="TaskCard__due-date">{formattedDate}</span>
 
-        <EditTaskButton initialValues={initialValues} id={id} />
+        <EditTaskButton role="edit" initialValues={initialValues} id={id} />
 
         <DeleteTaskButton title={title} id={id} />
       </div>

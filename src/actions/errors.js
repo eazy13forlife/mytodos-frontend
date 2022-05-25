@@ -141,6 +141,17 @@ const removeCreateProjectError = () => {
   };
 };
 
+const throwDeleteProjectError = () => {
+  return {
+    type: types.THROW_DELETE_PROJECT_ERROR,
+  };
+};
+
+const removeDeleteProjectError = () => {
+  return {
+    type: types.REMOVE_DELETE_PROJECT_ERROR,
+  };
+};
 export {
   throwSignUpErrors,
   throwLoginError,
@@ -157,4 +168,6 @@ export {
   throwFetchTasksUpcomingError,
   throwCreateProjectError,
   removeCreateProjectError,
+  throwDeleteProjectError,
+  removeDeleteProjectError,
 };

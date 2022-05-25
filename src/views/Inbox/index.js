@@ -11,6 +11,10 @@ const getAllTasks = createSelector(
   (state) => state.allTasks,
 
   (allTasks) => {
+    if (allTasks === "error") {
+      return "error";
+    }
+
     const newTasks = [];
 
     allTasks.allIds.forEach((id) => {
@@ -32,13 +36,15 @@ const Inbox = () => {
 
   //whenever allTasks,or filters,or sort changes we need to re-filter and re-sort. Well, re-sort for sure, but what about re-filter?
   useEffect(() => {
-    if (allTasks.length) {
-      const filteredTasks = filterTasks(allTasks, filters);
-
-      const sortedFilteredTasks = sortTasks(filteredTasks, sort);
-
-      setAdjustedTasks(sortedFilteredTasks);
+    if (allTasks === "error") {
+      return setAdjustedTasks("error");
     }
+
+    const filteredTasks = filterTasks(allTasks, filters);
+
+    const sortedFilteredTasks = sortTasks(filteredTasks, sort);
+
+    setAdjustedTasks(sortedFilteredTasks);
   }, [allTasks, filters, sort]);
 
   return <GeneralLayout title="Inbox" tasks={adjustedTasks} />;

@@ -1,33 +1,17 @@
 import React, { useState } from "react";
-
 import { AiOutlinePlus } from "react-icons/ai";
-import Modal from "../Modal/Modal.js";
-import AddProjectContent from "../AddProjectContent/AddProjectContent.js";
 
-const AddProjectButton = () => {
-  const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+import withUpdateProjectModal from "../../HOC/withUpdateProjectModal.js";
 
+const AddProjectButton = ({ onClick }) => {
   return (
-    <>
-      <button
-        className="AddProjectButton icon-text-button-2"
-        onClick={() => {
-          setShowAddProjectModal(true);
-        }}
-      >
-        <span className="icon-text-button-2__icon-wrapper">
-          <AiOutlinePlus className="icon-text-button-2__icon" />
-        </span>
-        <span className="icon-text-button-2__text">Add Project</span>
-      </button>
-
-      {showAddProjectModal && (
-        <Modal width="60rem">
-          <AddProjectContent showModal={setShowAddProjectModal} />
-        </Modal>
-      )}
-    </>
+    <button className="AddProjectButton icon-text-button-2" onClick={onClick}>
+      <span className="icon-text-button-2__icon-wrapper">
+        <AiOutlinePlus className="icon-text-button-2__icon" />
+      </span>
+      <span className="icon-text-button-2__text">Add Project</span>
+    </button>
   );
 };
 
-export default AddProjectButton;
+export default withUpdateProjectModal(AddProjectButton);

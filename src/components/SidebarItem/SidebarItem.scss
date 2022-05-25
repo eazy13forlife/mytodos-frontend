@@ -2,14 +2,20 @@
   &__item {
     display: flex;
     border-radius: 1rem;
+    position: relative;
     &:hover {
       background-color: rgba(var(--color-primary), 0.1);
     }
   }
+  &__item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem 1rem 1rem;
+  }
   &__link {
     display: flex;
-    padding: 1rem 2rem 1rem 1rem;
-    width: 100%;
     text-decoration: none;
     align-items: center;
     color: rgba(var(--color-dark), 1);
@@ -35,9 +41,20 @@
     margin-right: 0.5rem;
   }
   &__count {
-    margin-left: auto;
     font-weight: 400;
     font-size: 1.4rem;
     color: rgba(var(--color-primary), 1);
+  }
+  .EllipsesButton {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translatey(-50%);
+  }
+  .ProjectUpdateOptions {
+    position: absolute;
+    z-index: 1;
+    top: 80%;
+    right: -5rem;
   }
 }

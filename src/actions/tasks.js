@@ -27,6 +27,7 @@ const fetchTasks = () => {
         payload: response.data,
       });
     } catch (e) {
+      console.log(e);
       dispatch(throwFetchAllTasksError());
     }
   };
@@ -110,6 +111,8 @@ const deleteTask = (taskId) => {
 
       dispatch(removeDeleteTaskError());
     } catch (e) {
+      console.log("whys");
+      console.log(e);
       dispatch(throwDeleteTaskError());
 
       return "error";

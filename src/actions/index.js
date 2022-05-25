@@ -4,6 +4,7 @@ import {
   removeLoginError,
   removeDeleteTaskError,
   removeTaskCreationError,
+  removeDeleteProjectError,
 } from "./errors.js";
 import {
   createTask,
@@ -32,6 +33,7 @@ import {
   adjustTasksUpcoming,
   adjustTasksProject,
 } from "./sortsAndFilters.js";
+
 export {
   createUser,
   loginUser,
@@ -60,4 +62,5 @@ export {
   adjustTasksToday,
   adjustTasksUpcoming,
   adjustTasksProject,
+  removeDeleteProjectError,
 };
