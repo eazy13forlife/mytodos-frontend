@@ -7,19 +7,20 @@ import ProjectUpdateOptions from "../ProjectUpdateOptions/ProjectUpdateOptions.j
 import "./SidebarItem.scss";
 
 const SidebarItem = ({ link, icon, itemName, count, type, id }) => {
-  const [isHovering, setIsHovering] = useState(false);
+  const [showEllipsesButton, setShowEllipsesButton] = useState(false);
+
   const [showProjectOptions, setShowProjectOptions] = useState(false);
 
   return (
     <li
       className="Sidebar__item"
       onMouseEnter={() => {
-        setIsHovering(true);
+        setShowEllipsesButton(true);
       }}
       onMouseLeave={() => {
         //if projectOptions is showing, don't run any code. leave it
         if (!showProjectOptions) {
-          setIsHovering(false);
+          setShowEllipsesButton(false);
         }
       }}
     >
@@ -29,11 +30,11 @@ const SidebarItem = ({ link, icon, itemName, count, type, id }) => {
 
           <span className="Sidebar__name">{itemName}</span>
         </Link>
-        {isHovering && type === "project" ? (
+
+        {showEllipsesButton && type === "project" ? (
           <>
             <EllipsesButton
               onClick={(e) => {
-                e.preventDefault();
                 setShowProjectOptions(!showProjectOptions);
               }}
             />
@@ -44,7 +45,7 @@ const SidebarItem = ({ link, icon, itemName, count, type, id }) => {
                 id={id}
                 close={() => {
                   setShowProjectOptions(false);
-                  setIsHovering(false);
+                  setShowEllipsesButton(false);
                 }}
               />
             )}

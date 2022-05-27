@@ -1,62 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+
 import { AiOutlineClose } from "react-icons/ai";
 
-import { createProject, editProject } from "../../actions";
-import validateProjectData from "./validation.js";
 import Input from "../EntryFormFields/Input/Input.js";
+import useOnEventHandlers from "./useOnEventHandlers.js";
 import "./UpdateProjectContent.scss";
 
-let globalProjectErrors = {};
-
 const UpdateProjectContent = ({ role, initialValues, id, closeModal }) => {
-  const dispatch = useDispatch();
-
-  const projectCreationErrorsBackend = useSelector((state) => {
-    return state.projectCreationErrorsBackend;
-  });
-
-  const [projectData, setProjectData] = useState(initialValues);
-
-  const [projectDataErrors, setProjectDataErrors] = useState({
-    title: "",
-  });
-
-  const [clickSubmit, setClickSubmit] = useState(false);
-
-  useEffect(() => {
-    if (clickSubmit) {
-      if (projectCreationErrorsBackend) {
-        globalProjectErrors = projectCreationErrorsBackend;
-
-        setProjectDataErrors({ ...globalProjectErrors });
-
-        setClickSubmit(true);
-      } else {
-        closeModal();
-      }
-    }
-  }, [clickSubmit]);
-
-  const onFormSubmit = async (e) => {
-    e.preventDefault();
-
-    Object.keys(projectData).forEach((field) => {
-      validateProjectData(projectData, field, globalProjectErrors);
-    });
-
-    setProjectDataErrors({ ...globalProjectErrors });
-
-    if (!Object.keys(globalProjectErrors).length) {
-      if (role === "create") {
-        await dispatch(createProject(projectData));
-      } else if (role === "edit") {
-        await dispatch(editProject(id, projectData));
-      }
-
-      setClickSubmit(true);
-    }
-  };
+  const [projectData, onFormSubmit, onBlur, onChange, projectDataErrors] =
+    useOnEventHandlers(id, initialValues, role, closeModal);
 
   return (
     <div className="UpdateProjectContent">
@@ -78,17 +30,8 @@ const UpdateProjectContent = ({ role, initialValues, id, closeModal }) => {
           name="title"
           id="name"
           value={projectData.title}
-          onChange={(e) => {
-            setProjectData({ ...projectData, title: e.target.value });
-          }}
-          onBlur={(e) => {
-            validateProjectData(
-              projectData,
-              e.target.name,
-              globalProjectErrors
-            );
-            setProjectDataErrors({ ...globalProjectErrors });
-          }}
+          onChange={onChange}
+          onBlur={onBlur}
           errors={projectDataErrors}
         />
 

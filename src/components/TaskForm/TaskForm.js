@@ -1,61 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Formik, Form } from "formik";
-import { createSelector } from "reselect";
 import { AiOutlineClose } from "react-icons/ai";
 
 import { TextInput, TextArea, SelectBox } from "./inputComponents.js";
 import taskValidation from "./validation.js";
 import "./TaskForm.scss";
+import useBackendResult from "./useBackendResult.js";
+import ProjectSelectOptions from "./ProjectSelectOptions.js";
 
-const getAllProjects = createSelector(
-  (state) => state.projects,
-  (allProjects) => {
-    const projects = [];
-
-    allProjects.allIds.forEach((id) => {
-      const { _id: projectId, title: projectTitle } = allProjects.byId[id];
-      projects.push({ projectId, projectTitle });
-    });
-
-    return projects;
-  }
-);
 const TaskForm = ({ role, closeModal, initialValues, sendData }) => {
-  const projects = useSelector(getAllProjects);
-
-  //return the first one that is truthy. By default taskCreationErrorsBackend is null(falsy)
-  const errorsBackend = useSelector((state) => {
-    return state.taskCreationErrorsBackend || {};
-  });
-
-  const [clickedCreate, setClickedCreate] = useState(false);
-
-  useEffect(() => {
-    if (clickedCreate) {
-      //if no backend errors, we're good, so lets close modal. This will unmount my modal, so I dont need to set clickedCreate to false,because when it mounts, it will use initial state again.
-      if (!Object.keys(errorsBackend).length) {
-        closeModal();
-        //otherwise, if there is error, we need to set clickedCreate to false, so when we click createTask again and no backend errors, the modal will close
-      } else {
-        setClickedCreate(false);
-      }
-    }
-  }, [clickedCreate]);
-
-  const renderedProjectOptions = projects.map((project) => {
-    const { projectId, projectTitle } = project;
-
-    return (
-      <option
-        value={projectId}
-        className="TaskForm__select-value"
-        key={projectId}
-      >
-        {projectTitle}
-      </option>
-    );
-  });
+  console.log(initialValues);
+  const [errorsBackend, setClickedCreate] = useBackendResult(closeModal);
 
   return (
     <div className="TaskForm">
@@ -116,7 +72,7 @@ const TaskForm = ({ role, closeModal, initialValues, sendData }) => {
               <option value="" className="TaskForm__select-value">
                 None
               </option>
-              {renderedProjectOptions}
+              <ProjectSelectOptions />
             </SelectBox>
 
             <TextInput

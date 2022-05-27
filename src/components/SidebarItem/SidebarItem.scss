@@ -16,6 +16,7 @@
   }
   &__link {
     display: flex;
+    flex: 1 0 0;
     text-decoration: none;
     align-items: center;
     color: rgba(var(--color-dark), 1);

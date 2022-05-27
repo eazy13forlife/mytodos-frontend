@@ -76,6 +76,8 @@ const logoutUser = () => {
       dispatch(removeLogoutError());
     } catch (e) {
       dispatch(throwLogoutError());
+
+      return "error";
     }
   };
 };

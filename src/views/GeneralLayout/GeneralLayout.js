@@ -4,13 +4,17 @@ import Header from "../../components/Header/Header.js";
 import Sidebar from "../../components/Sidebar/Sidebar.js";
 import MyTodosMain from "../../components/MyTodosMain/MyTodosMain.js";
 
-const GeneralLayout = ({ title, tasks }) => {
+const GeneralLayout = ({ title, tasks, initialValues }) => {
   return (
     <div className="Inbox full-wrap">
       <Header />
       <div className="flex stretch-vertical">
         <Sidebar />
-        <MyTodosMain title={title} tasks={tasks} />
+        <MyTodosMain
+          title={title}
+          tasks={tasks}
+          initialValues={initialValues}
+        />
       </div>
     </div>
   );

@@ -1,53 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import moment from "moment";
 
 import SidebarItem from "../SidebarItem/SidebarItem.js";
 import AddProjectButton from "../AddProjectButton/AddProjectButton.js";
 import { BsMailbox, BsCalendar2Date } from "react-icons/bs";
 import { AiOutlineCalendar, AiTwotoneFolderOpen } from "react-icons/ai";
-import { GrDocument } from "react-icons/gr";
-import EllipsesButton from "../EllipsesButton/EllipsesButton.js";
 
+import { getCount } from "./selectors.js";
+import RenderedProjects from "./RenderedProjects.js";
 import "./Sidebar.scss";
-
-const getCount = createSelector(
-  (state) => state.allTasks,
-  (allTasks) => {
-    let todayCount = 0;
-
-    let upcomingCount = 0;
-
-    const currentDate = moment().startOf("day").toISOString();
-
-    const taskObjects = Object.values(allTasks.byId);
-
-    taskObjects.forEach((task) => {
-      if (task.dueDate && task.dueDate === currentDate) {
-        todayCount += 1;
-      } else if (task.dueDate && task.dueDate > currentDate) {
-        upcomingCount += 1;
-      }
-    });
-
-    return { todayCount, upcomingCount };
-  }
-);
-
-const getAllProjects = createSelector(
-  (state) => state.projects,
-
-  (projects) => {
-    const projectsArray = [];
-
-    projects.allIds.forEach((id) => {
-      projectsArray.push(projects.byId[id]);
-    });
-
-    return { projects, projectsArray };
-  }
-);
 
 const Sidebar = () => {
   const inboxCount = useSelector((state) => {
@@ -55,26 +16,6 @@ const Sidebar = () => {
   });
 
   const { todayCount, upcomingCount } = useSelector(getCount);
-
-  const { projects, projectsArray } = useSelector(getAllProjects);
-
-  const renderedProjects = projectsArray.map((project) => {
-    const { title, tasks, _id: id } = projects.byId[project._id];
-    const shortenedTitle =
-      title.length > 20 ? `${title.substring(0, 19)}...` : title;
-
-    return (
-      <SidebarItem
-        link={`/projects/:${id}`}
-        itemName={shortenedTitle}
-        count={tasks.length}
-        key={project._id}
-        type="project"
-        id={id}
-        icon={<GrDocument className="Sidebar__icon Sidebar__icon--document" />}
-      />
-    );
-  });
 
   return (
     <nav className="Sidebar">
@@ -110,7 +51,9 @@ const Sidebar = () => {
         Projects
       </h2>
 
-      <ul className="Sidebar__project-options">{renderedProjects}</ul>
+      <ul className="Sidebar__project-options">
+        <RenderedProjects />
+      </ul>
 
       <AddProjectButton role="create" initialValues={{ title: "" }} />
     </nav>

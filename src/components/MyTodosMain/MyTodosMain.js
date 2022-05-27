@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import { FaFilter } from "react-icons/fa";
 import { BiSortAlt2 } from "react-icons/bi";
 
@@ -9,16 +9,23 @@ import TaskCard from "../TaskCard/TaskCard.js";
 import TaskCompletedBox from "../TaskCompletedBox/TaskCompletedBox.js";
 import useDelayUnmount from "../../hooks/useDelayUnmount.js";
 import AddTaskButton from "../AddTaskButton/AddTaskButton.js";
-import { onTaskCompletion } from "../../actions/";
+import useRecentlyCompletedStatus from "./useRecentlyCompletedStatus.js";
 
 import "./MyTodosMain.scss";
 
-const MyTodosMain = ({ title, tasks }) => {
-  const dispatch = useDispatch();
+const MyTodosMain = ({ title, tasks, initialValues }) => {
+  const defaultInitialValues = {
+    title: "",
+    description: "",
+    priority: "",
+    project: "",
+    dueDate: "",
+    completed: false,
+  };
 
-  const recentlyCompleted = useSelector((state) => {
-    return state.recentlyCompleted;
-  });
+  const newInitialValues = { ...defaultInitialValues, ...initialValues };
+
+  const [recentlyCompleted] = useRecentlyCompletedStatus();
 
   const deleteTaskError = useSelector((state) => {
     return state.deleteTaskError;
@@ -29,19 +36,6 @@ const MyTodosMain = ({ title, tasks }) => {
 
   //recentlyCompleted will be our mount indicator. If true, that means item should be mounted, if false, item should be unmounted
   const mountTaskCompletedBox = useDelayUnmount(recentlyCompleted, 500);
-
-  useEffect(() => {
-    //if recentlyCompleted is still true after 10 seconds of being set to completed then just mark it as completed for real.This will result in the taskCompletedbox not showing anymore
-    const timerId = setTimeout(() => {
-      if (recentlyCompleted) {
-        dispatch(onTaskCompletion());
-      }
-    }, 10000);
-
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, [recentlyCompleted]);
 
   let renderedTasks;
 
@@ -92,17 +86,7 @@ const MyTodosMain = ({ title, tasks }) => {
         </p>
       )}
 
-      <AddTaskButton
-        role="create"
-        initialValues={{
-          title: "",
-          description: "",
-          priority: "",
-          project: "",
-          dueDate: "",
-          completed: false,
-        }}
-      />
+      <AddTaskButton role="create" initialValues={newInitialValues} />
 
       {/*component is actually removed from screen(unmounted) 500ms after the mount indicator recentlyCompleted is false. This means until it is actually unmounted, we can add a style that that will remove this item visually from screen(like opacity) within the 500ms we have until it is actually unmounted*/}
       {mountTaskCompletedBox && (
@@ -110,6 +94,7 @@ const MyTodosMain = ({ title, tasks }) => {
       )}
 
       {deleteTaskError && <ErrorBox message="Unable to delete" />}
+
       {deleteProjectError && <ErrorBox message="Unable to delete" />}
     </main>
   );

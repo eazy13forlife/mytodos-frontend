@@ -1,11 +1,6 @@
 .FullPage {
-  &__outer-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: blue;
-  }
+  background-color: blue;
+
   &__child-container {
-    flex-grow: 1;
   }
 }

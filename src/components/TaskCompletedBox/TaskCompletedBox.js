@@ -1,20 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 
+import useClickFunctions from "./useClickFunctions.js";
 import { AiOutlineClose } from "react-icons/ai";
-import { removeRecentlyCompleted, onTaskCompletion } from "../../actions/";
 import "./TaskCompletedBox.scss";
 
 const TaskCompletedBox = ({ mountIndicator }) => {
-  const dispatch = useDispatch();
-
-  const onUndoClick = () => {
-    dispatch(removeRecentlyCompleted());
-  };
-
-  const onCloseClick = async () => {
-    dispatch(onTaskCompletion());
-  };
+  const [onUndoClick, onCloseClick] = useClickFunctions();
 
   const unmountAnimation = () => {
     if (!mountIndicator) {
