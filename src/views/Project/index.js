@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 
+import useAdjustedTasks from "../useAdjustedTasks.js";
+import { makeGetProjectAdjustments } from "../../selectors/projectAdjustments.js";
 import GeneralLayout from "../GeneralLayout/GeneralLayout.js";
 import ErrorPage from "../../components/ErrorPage";
 import useGetProjectTasks from "./useGetProjectTasks.js";
-import "./index.scss";
 
 const Project = () => {
   const match = useRouteMatch();
@@ -13,6 +15,14 @@ const Project = () => {
 
   const [projectTitle, projectTasks] = useGetProjectTasks(projectId);
 
+  const projectAdjustmentsSelector = useMemo(makeGetProjectAdjustments, []);
+
+  const { filters, sort } = useSelector((state) => {
+    return projectAdjustmentsSelector(state, projectId);
+  });
+
+  const [adjustedTasks] = useAdjustedTasks(projectTasks, filters, sort);
+
   const render = () => {
     if (!projectTitle) {
       return <ErrorPage message="This page does not exist" />;
@@ -20,8 +30,8 @@ const Project = () => {
     return (
       <GeneralLayout
         title={projectTitle}
-        tasks={projectTasks}
-        initialValues={{ project: projectId }}
+        tasks={adjustedTasks}
+        updatedValues={{ project: projectId }}
       />
     );
   };

@@ -1,51 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
 
+import useAdjustedTasks from "../useAdjustedTasks.js";
 import GeneralLayout from "../GeneralLayout/GeneralLayout.js";
-import filterTasks from "../../helperFunctions/filterTasks.js";
-import sortTasks from "../../helperFunctions/sortTasks.js";
+import { getAllTasks } from "./selectors.js";
 import "./index.scss";
 
-const getAllTasks = createSelector(
-  (state) => state.allTasks,
-
-  (allTasks) => {
-    if (allTasks === "error") {
-      return "error";
-    }
-
-    const newTasks = [];
-
-    allTasks.allIds.forEach((id) => {
-      newTasks.push(allTasks.byId[id]);
-    });
-
-    return newTasks;
-  }
-);
-
 const Inbox = () => {
-  const [adjustedTasks, setAdjustedTasks] = useState([]);
-
   const allTasks = useSelector(getAllTasks);
 
-  const { filters, sort } = useSelector((state) => {
-    return state.tasksAdjustment.allTasks;
+  const currentFilters = useSelector((state) => {
+    return state.tasksAdjustment.allTasks.filters;
   });
 
-  //whenever allTasks,or filters,or sort changes we need to re-filter and re-sort. Well, re-sort for sure, but what about re-filter?
-  useEffect(() => {
-    if (allTasks === "error") {
-      return setAdjustedTasks("error");
-    }
+  const currentSort = useSelector((state) => {
+    return state.tasksAdjustment.allTasks.sort;
+  });
 
-    const filteredTasks = filterTasks(allTasks, filters);
-
-    const sortedFilteredTasks = sortTasks(filteredTasks, sort);
-
-    setAdjustedTasks(sortedFilteredTasks);
-  }, [allTasks, filters, sort]);
+  const [adjustedTasks] = useAdjustedTasks(
+    allTasks,
+    currentFilters,
+    currentSort
+  );
 
   return <GeneralLayout title="Inbox" tasks={adjustedTasks} />;
 };

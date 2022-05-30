@@ -1,0 +1,23 @@
+.Filters {
+  border: 2px solid rgba(var(--color-dark), 0.5);
+  width: 23rem;
+  padding: 1rem 2rem;
+  height: 30rem;
+  box-shadow: var(--box-shadow-regular);
+  background-color: rgba(var(--color-light), 1);
+  overflow: scroll;
+  &__title {
+    font-weight: 600;
+    font-size: var(--fs-550);
+  }
+  &__filter {
+    margin-top: 1.5rem;
+  }
+  &__filter-name {
+    font-weight: 600;
+    font-size: var(--fs-500);
+  }
+  &__button {
+    margin-top: 2rem;
+  }
+}

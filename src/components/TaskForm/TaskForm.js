@@ -10,7 +10,6 @@ import useBackendResult from "./useBackendResult.js";
 import ProjectSelectOptions from "./ProjectSelectOptions.js";
 
 const TaskForm = ({ role, closeModal, initialValues, sendData }) => {
-  console.log(initialValues);
   const [errorsBackend, setClickedCreate] = useBackendResult(closeModal);
 
   return (

@@ -1,0 +1,23 @@
+.SortGroup {
+  position: relative;
+  padding: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  &:hover {
+    background-color: rgba(var(--color-black), 0.05);
+  }
+
+  &__value-group {
+    display: flex;
+    align-items: center;
+  }
+  &__value {
+    text-transform: capitalize;
+    margin-right: 0.5rem;
+    color: rgba(var(--color-black), 0.5);
+    padding-left: 5rem;
+    &:hover {
+      color: rgba(var(--color-black), 1);
+    }
+  }
+}

@@ -1,42 +1,32 @@
 import types from "./types.js";
 
-const adjustAllTasks = (filters, sort) => {
+const adjustAllTasks = (adjustObject) => {
   return {
     type: types.ADJUST_ALL_TASKS,
-    payload: {
-      filters: filters,
-      sort: sort,
-    },
+    payload: adjustObject,
   };
 };
 
-const adjustTasksToday = (filters, sort) => {
+const adjustTasksToday = (adjustObject) => {
   return {
     type: types.ADJUST_TASKS_TODAY,
-    payload: {
-      filters: filters,
-      sort: sort,
-    },
+    payload: adjustObject,
   };
 };
 
-const adjustTasksUpcoming = (filters, sort) => {
+const adjustTasksUpcoming = (adjustObject) => {
   return {
     type: types.ADJUST_TASKS_UPCOMING,
-    payload: {
-      filters: filters,
-      sort: sort,
-    },
+    payload: adjustObject,
   };
 };
 
-const adjustTasksProject = (projectId, filters, sort) => {
+const adjustTasksProject = (projectId, adjustObject) => {
   return {
-    type: types.ADJUST_TASKS_UPCOMING,
+    type: types.ADJUST_TASKS_PROJECT,
     payload: {
       projectId: projectId,
-      filters: filters,
-      sort: sort,
+      adjustObject: adjustObject,
     },
   };
 };

@@ -11,6 +11,16 @@
   &__filter-and-sort {
     display: flex;
   }
+  &__adjustment-group {
+    position: relative;
+    .Filters,
+    .Sort {
+      position: absolute;
+      top: 100%;
+      right: 0%;
+    }
+  }
+
   &__action-button {
     padding: 1rem;
     color: rgba(var(--color-black), 0.4);

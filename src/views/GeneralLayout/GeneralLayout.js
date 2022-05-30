@@ -4,7 +4,7 @@ import Header from "../../components/Header/Header.js";
 import Sidebar from "../../components/Sidebar/Sidebar.js";
 import MyTodosMain from "../../components/MyTodosMain/MyTodosMain.js";
 
-const GeneralLayout = ({ title, tasks, initialValues }) => {
+const GeneralLayout = ({ title, tasks, updatedValues }) => {
   return (
     <div className="Inbox full-wrap">
       <Header />
@@ -13,7 +13,7 @@ const GeneralLayout = ({ title, tasks, initialValues }) => {
         <MyTodosMain
           title={title}
           tasks={tasks}
-          initialValues={initialValues}
+          updatedValues={updatedValues}
         />
       </div>
     </div>
