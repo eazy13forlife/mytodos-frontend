@@ -35,6 +35,7 @@ const initial = {
     }
     */
 
+//adjustmentObject is an object where key is the adjustment like filter and sort and value is the value object of that key
 const addAdjustments = (baseState, adjustmentObject, taskType) => {
   return produce(baseState, (draftState) => {
     const adjustmentProperties = Object.keys(adjustmentObject);
@@ -57,7 +58,7 @@ const addAdjustmentsProjects = (baseState, adjustmentObject, projectId) => {
           sort: {},
         };
       }
-
+      console.log(adjustmentObject[adjustmentProperty]);
       draftState.projects.byId[projectId][adjustmentProperty] =
         adjustmentObject[adjustmentProperty];
     });

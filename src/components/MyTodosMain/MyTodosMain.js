@@ -16,6 +16,7 @@ import RenderedTasks from "./RenderedTasks.js";
 import "./MyTodosMain.scss";
 
 const MyTodosMain = ({ title, tasks, updatedValues }) => {
+  console.log("dog");
   const updatedInitialValues = { ...initialValues, ...updatedValues };
 
   const [buttonClicked, setButtonClicked] = useState(false);
