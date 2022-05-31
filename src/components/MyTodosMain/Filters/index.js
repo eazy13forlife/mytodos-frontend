@@ -11,15 +11,13 @@ import "./index.scss";
 const Filters = ({ closeComponent }) => {
   const filtersRef = useRef();
 
-  const match = useRouteMatch();
-
-  const currentPath = match.path;
+  const currentPath = useRouteMatch().path;
 
   useCloseComponentOffClick(filtersRef, closeComponent);
 
-  const [filterValues, setFilterValues] = useFilterValues(match);
+  const [filterValues, setFilterValues] = useFilterValues();
 
-  const [onFormSubmit] = useOnSubmit(match, filterValues, closeComponent);
+  const [onFormSubmit] = useOnSubmit(filterValues, closeComponent);
 
   return (
     <>
@@ -44,21 +42,18 @@ const Filters = ({ closeComponent }) => {
                 value=""
                 label="none"
                 id="priority-none"
-                matchObject={match}
               />
               <RadioGroup
                 name="dueDate"
                 value="today"
                 label="today"
                 id="today"
-                matchObject={match}
               />
               <RadioGroup
                 name="dueDate"
                 value="upcoming"
                 label="upcoming"
                 id="upcoming"
-                matchObject={match}
               />
             </div>
           ) : null}
@@ -70,34 +65,15 @@ const Filters = ({ closeComponent }) => {
             }}
           >
             <h3 className="Filters__filter-name">Priority</h3>
-            <RadioGroup
-              name="priority"
-              value=""
-              label="none"
-              id="none"
-              matchObject={match}
-            />
-            <RadioGroup
-              name="priority"
-              value="low"
-              label="low"
-              id="low"
-              matchObject={match}
-            />
+            <RadioGroup name="priority" value="" label="none" id="none" />
+            <RadioGroup name="priority" value="low" label="low" id="low" />
             <RadioGroup
               name="priority"
               value="medium"
               label="medium"
               id="medium"
-              matchObject={match}
             />
-            <RadioGroup
-              name="priority"
-              value="high"
-              label="high"
-              id="high"
-              matchObject={match}
-            />
+            <RadioGroup name="priority" value="high" label="high" id="high" />
           </div>
 
           <button

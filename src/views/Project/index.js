@@ -20,7 +20,7 @@ const Project = () => {
   const { filters, sort } = useSelector((state) => {
     return projectAdjustmentsSelector(state, projectId);
   });
-  console.log(sort);
+
   const [adjustedTasks] = useAdjustedTasks(projectTasks, filters, sort);
 
   const render = () => {

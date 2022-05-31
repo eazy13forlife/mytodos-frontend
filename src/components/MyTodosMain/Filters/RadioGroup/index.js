@@ -5,8 +5,8 @@ import { renderDefaultChecked } from "./helpers";
 import useFilterValues from "../useFilterValues.js";
 import "./index.scss";
 
-const RadioGroup = ({ name, value, id, label, matchObject }) => {
-  const [filters] = useFilterValues(matchObject);
+const RadioGroup = ({ name, value, id, label }) => {
+  const [filters] = useFilterValues();
 
   return (
     <div className="Filters__radio-group">

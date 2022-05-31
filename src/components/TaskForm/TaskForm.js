@@ -18,10 +18,9 @@ const TaskForm = ({ role, closeModal, initialValues, sendData }) => {
         initialValues={initialValues}
         validationSchema={taskValidation}
         onSubmit={async (values) => {
-          if (!values.project) {
-            delete values.project;
-          }
-          await sendData(values);
+          console.log(values);
+          const result = await sendData(values);
+
           setClickedCreate(true);
         }}
       >

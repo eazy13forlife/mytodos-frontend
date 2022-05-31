@@ -1,51 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
-import {
-  adjustAllTasks,
-  adjustTasksToday,
-  adjustTasksUpcoming,
-  adjustTasksProject,
-} from "../../../actions/";
+import useAdjustmentFunction from "../useAdjustmentFunction.js";
 
-const useOnSubmit = (matchObject, filterValues, closeFilters) => {
-  const dispatch = useDispatch();
+const useOnSubmit = (filterValues, closeFilters) => {
+  const adjustmentFunction = useAdjustmentFunction();
 
   const onFormSubmit = (e) => {
     e.preventDefault();
 
-    switch (matchObject.path) {
-      case "/projects/:projectId":
-        dispatch(
-          adjustTasksProject(matchObject.params.projectId.substring(1), {
-            filters: filterValues,
-          })
-        );
-        break;
-      case "/today":
-        dispatch(
-          adjustTasksToday({
-            filters: filterValues,
-          })
-        );
-        break;
-      case "/upcoming":
-        dispatch(
-          adjustTasksUpcoming({
-            filters: filterValues,
-          })
-        );
-        break;
-      case "/inbox":
-        dispatch(
-          adjustAllTasks({
-            filters: filterValues,
-          })
-        );
-        break;
-      default:
-        break;
-    }
+    adjustmentFunction({ filters: filterValues });
 
     closeFilters();
   };

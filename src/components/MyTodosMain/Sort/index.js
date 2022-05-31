@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { AiOutlineDown } from "react-icons/ai";
 
 import useCloseComponentOffClick from "../../../hooks/useCloseOffClick.js";
-import { sortByOptions, orderOptions } from "./optionsArray.js";
+import { sortByOptions, orderOptions, getDisplayName } from "./optionsData.js";
 import useOnOptionClick from "./useOnOptionClick.js";
 
 import {
@@ -27,17 +27,17 @@ const Sort = ({ closeComponent }) => {
       <SortGroup
         sortTitle="Sort by"
         options={sortByOptions}
-        displayValue={sortBy.displayName}
+        displayValue={getDisplayName(sortBy)}
         onOptionClick={(value) => {
           setSortBy(value);
         }}
       />
 
-      {sortBy.value ? (
+      {sortBy ? (
         <SortGroup
           sortTitle="Order"
           options={orderOptions}
-          displayValue={sortOrder.displayName}
+          displayValue={getDisplayName(sortOrder)}
           onOptionClick={(value) => {
             setSortOrder(value);
           }}

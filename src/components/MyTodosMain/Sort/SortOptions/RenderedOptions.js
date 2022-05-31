@@ -1,11 +1,9 @@
 import React from "react";
-
+import { getDisplayName } from "../optionsData.js";
 import "./SortOptions.scss";
 
 const RenderedOptions = ({ options, onOptionClick, closeOptions }) => {
   const renderedOptions = options.map((option, index) => {
-    const { value, displayName } = option;
-
     return (
       <div
         className="SortOptions__option"
@@ -16,7 +14,7 @@ const RenderedOptions = ({ options, onOptionClick, closeOptions }) => {
           e.stopPropagation();
         }}
       >
-        <p className="SortOptions__option-title">{displayName}</p>
+        <p className="SortOptions__option-title">{getDisplayName(option)}</p>
       </div>
     );
   });

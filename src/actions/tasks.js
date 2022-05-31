@@ -56,6 +56,7 @@ const createTask = (taskData) => {
       dispatch(removeTaskCreationError());
     } catch (e) {
       dispatch(throwTaskCreationError(e.response.data));
+      return "error";
     }
   };
 };
@@ -74,18 +75,20 @@ const editTask = (taskId, taskData) => {
           },
         }
       );
+      console.log(response);
 
       dispatch({
         type: types.EDIT_TASK,
         payload: {
-          originalTask: taskData,
-          editedTask: response.data,
+          originalTask: response.data.original,
+          editedTask: response.data.updated,
         },
       });
 
       dispatch(removeTaskCreationError());
     } catch (e) {
       dispatch(throwTaskCreationError(e.response.data));
+      return "error";
     }
   };
 };
