@@ -14,8 +14,8 @@ const DeleteTaskButton = ({ title, id }) => {
   return (
     <>
       <button
-        className="TaskCard__button-trash icon-button"
-        onClick={() => {
+        className="DeleteTaskButton TaskCard__button-trash icon-button"
+        onClick={(e) => {
           setShowDeleteModal(true);
         }}
       >

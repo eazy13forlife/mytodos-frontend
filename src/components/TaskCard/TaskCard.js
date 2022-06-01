@@ -51,43 +51,44 @@ const TaskCard = ({
   };
 
   return (
-    <>
-      <div
-        className="TaskCard"
-        onClick={() => {
-          onClick({ title, description, priority, dueDate: formattedDate });
-        }}
-      >
-        <div className="TaskCard__content">
-          <input
-            className="TaskCard__radio"
-            type="checkbox"
-            name="completed"
-            id={`completed-${id}`}
-            onChange={onCompletedCheck}
+    <div className="TaskCard">
+      <div className="TaskCard__content">
+        <input
+          className="TaskCard__radio"
+          type="checkbox"
+          name="completed"
+          id={`completed-${id}`}
+          onChange={onCompletedCheck}
+        />
+        <label className="TaskCard__custom-radio" htmlFor={`completed-${id}`}>
+          <span className="TaskCard__radio-background">
+            <GiCheckMark />
+          </span>
+        </label>
+
+        <button
+          className="TaskCard__background"
+          onClick={() => {
+            console.log("hy");
+            onClick({ title, description, priority, dueDate: formattedDate });
+          }}
+        ></button>
+
+        <h2 className="TaskCard__title">{restrictedTitle}</h2>
+
+        {priority ? (
+          <BsFlag
+            className={`TaskCard__icon TaskCard__icon-flag TaskCard__icon-flag--${priority}`}
           />
-          <label className="TaskCard__custom-radio" htmlFor={`completed-${id}`}>
-            <span className="TaskCard__radio-background">
-              <GiCheckMark />
-            </span>
-          </label>
+        ) : null}
 
-          <h2 className="TaskCard__title">{restrictedTitle}</h2>
+        <span className="TaskCard__due-date">{formattedDate}</span>
 
-          {priority ? (
-            <BsFlag
-              className={`TaskCard__icon TaskCard__icon-flag TaskCard__icon-flag--${priority}`}
-            />
-          ) : null}
+        <EditTaskButton role="edit" initialValues={initialValues} id={id} />
 
-          <span className="TaskCard__due-date">{formattedDate}</span>
-
-          <EditTaskButton role="edit" initialValues={initialValues} id={id} />
-
-          <DeleteTaskButton title={title} id={id} />
-        </div>
+        <DeleteTaskButton title={title} id={id} />
       </div>
-    </>
+    </div>
   );
 };
 

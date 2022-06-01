@@ -26,6 +26,7 @@ const MyTodosMain = ({ title, tasks, updatedValues }) => {
     data: {},
   });
 
+  console.log(showTaskModal);
   const [recentlyCompleted] = useRecentlyCompletedStatus();
 
   const deleteTaskError = useSelector((state) => {

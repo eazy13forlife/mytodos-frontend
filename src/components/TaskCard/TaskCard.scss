@@ -1,6 +1,7 @@
 .TaskCard {
   cursor: pointer;
   border-bottom: 1px solid rgba(var(--color-dark), 0.15);
+  position: relative;
   &:not(:first-child) {
     margin-top: 2rem;
   }
@@ -12,6 +13,7 @@
     grid-column-gap: 2rem;
     align-items: center;
     padding-bottom: 1rem;
+    position: relative;
   }
   &__radio {
     grid-column: 1/2;
@@ -54,6 +56,15 @@
     grid-row: 1/2;
     word-wrap: break-word;
   }
+  &__background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+  }
   &__icon {
     font-size: 2.5rem;
     color: rgba(var(--color-dark), 1);
@@ -85,5 +96,9 @@
   &__button-trash {
     grid-column: 5/6;
     grid-row: 2/3;
+  }
+  .EditTaskButton,
+  .DeleteTaskButton {
+    position: relative;
   }
 }
