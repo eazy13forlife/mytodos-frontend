@@ -4,14 +4,21 @@ import { BsFlag, BsTrash } from "react-icons/bs";
 import { GiCheckMark } from "react-icons/gi";
 import moment from "moment";
 
-import Modal from "../Modal/Modal.js";
 import DeleteTaskContent from "../DeleteItemContent/DeleteItemContent.js";
 import EditTaskButton from "../EditTaskButton/EditTaskButton.js";
 import DeleteTaskButton from "../DeleteTaskButton/DeleteTaskButton.js";
 import { addRecentlyCompleted, onTaskCompletion } from "../../actions/";
 import "./TaskCard.scss";
 
-const TaskCard = ({ title, priority, description, project, dueDate, id }) => {
+const TaskCard = ({
+  title,
+  priority,
+  description,
+  project,
+  dueDate,
+  id,
+  onClick,
+}) => {
   const dispatch = useDispatch();
 
   const recentlyCompleted = useSelector((state) => {
@@ -44,36 +51,43 @@ const TaskCard = ({ title, priority, description, project, dueDate, id }) => {
   };
 
   return (
-    <div className="TaskCard">
-      <div className="TaskCard__content">
-        <input
-          className="TaskCard__radio"
-          type="checkbox"
-          name="completed"
-          id={`completed-${id}`}
-          onChange={onCompletedCheck}
-        />
-        <label className="TaskCard__custom-radio" htmlFor={`completed-${id}`}>
-          <span className="TaskCard__radio-background">
-            <GiCheckMark />
-          </span>
-        </label>
-
-        <h2 className="TaskCard__title">{restrictedTitle}</h2>
-
-        {priority ? (
-          <BsFlag
-            className={`TaskCard__icon TaskCard__icon-flag TaskCard__icon-flag--${priority}`}
+    <>
+      <div
+        className="TaskCard"
+        onClick={() => {
+          onClick({ title, description, priority, dueDate: formattedDate });
+        }}
+      >
+        <div className="TaskCard__content">
+          <input
+            className="TaskCard__radio"
+            type="checkbox"
+            name="completed"
+            id={`completed-${id}`}
+            onChange={onCompletedCheck}
           />
-        ) : null}
+          <label className="TaskCard__custom-radio" htmlFor={`completed-${id}`}>
+            <span className="TaskCard__radio-background">
+              <GiCheckMark />
+            </span>
+          </label>
 
-        <span className="TaskCard__due-date">{formattedDate}</span>
+          <h2 className="TaskCard__title">{restrictedTitle}</h2>
 
-        <EditTaskButton role="edit" initialValues={initialValues} id={id} />
+          {priority ? (
+            <BsFlag
+              className={`TaskCard__icon TaskCard__icon-flag TaskCard__icon-flag--${priority}`}
+            />
+          ) : null}
 
-        <DeleteTaskButton title={title} id={id} />
+          <span className="TaskCard__due-date">{formattedDate}</span>
+
+          <EditTaskButton role="edit" initialValues={initialValues} id={id} />
+
+          <DeleteTaskButton title={title} id={id} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

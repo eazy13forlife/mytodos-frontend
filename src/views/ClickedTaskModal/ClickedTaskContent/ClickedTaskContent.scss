@@ -1,0 +1,26 @@
+.TaskContent {
+  padding: 3rem 2rem;
+  &__title {
+    font-size: var(--fs-550);
+  }
+  &__description {
+    margin-top: 1rem;
+    font-size: var(--fs-450);
+  }
+  &__secondary-info {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+  &__meta-group {
+    &:nth-of-type(n + 2) {
+      margin-left: 3rem;
+    }
+  }
+  &__field {
+    font-weight: 600;
+  }
+  &__content {
+    margin-left: 0.5rem;
+  }
+}

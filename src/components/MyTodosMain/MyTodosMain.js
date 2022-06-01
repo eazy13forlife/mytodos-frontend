@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { FaFilter } from "react-icons/fa";
 import { BiSortAlt2 } from "react-icons/bi";
 
+import ClickedTaskModal from "../../views/ClickedTaskModal/";
 import { initialValues } from "../TaskForm/initialValues.js";
 import ErrorBox from "../ErrorBox/ErrorBox.js";
 import Filters from "./Filters";
@@ -16,10 +17,14 @@ import RenderedTasks from "./RenderedTasks.js";
 import "./MyTodosMain.scss";
 
 const MyTodosMain = ({ title, tasks, updatedValues }) => {
-  console.log("dog");
   const updatedInitialValues = { ...initialValues, ...updatedValues };
 
   const [buttonClicked, setButtonClicked] = useState(false);
+
+  const [showTaskModal, setShowTaskModal] = useState({
+    show: false,
+    data: {},
+  });
 
   const [recentlyCompleted] = useRecentlyCompletedStatus();
 
@@ -80,7 +85,18 @@ const MyTodosMain = ({ title, tasks, updatedValues }) => {
       </div>
 
       {tasks !== "error" ? (
-        <RenderedTasks tasks={tasks} recentlyCompleted={recentlyCompleted} />
+        <RenderedTasks
+          tasks={tasks}
+          recentlyCompleted={recentlyCompleted}
+          onClick={(taskData) => {
+            setShowTaskModal({
+              show: true,
+              data: {
+                ...taskData,
+              },
+            });
+          }}
+        />
       ) : (
         <p className="Todos__error-message color-error">
           Error loading tasks. Try again later.
@@ -92,6 +108,18 @@ const MyTodosMain = ({ title, tasks, updatedValues }) => {
       {/*component is actually removed from screen(unmounted) 500ms after the mount indicator recentlyCompleted is false. This means until it is actually unmounted, we can add a style that that will remove this item visually from screen(like opacity) within the 500ms we have until it is actually unmounted*/}
       {mountTaskCompletedBox && (
         <TaskCompletedBox mountIndicator={recentlyCompleted} />
+      )}
+
+      {showTaskModal.show && (
+        <ClickedTaskModal
+          data={showTaskModal.data}
+          close={() => {
+            setShowTaskModal({
+              show: false,
+              data: {},
+            });
+          }}
+        />
       )}
 
       {deleteTaskError && <ErrorBox message="Unable to delete" />}

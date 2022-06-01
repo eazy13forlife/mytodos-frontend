@@ -13,6 +13,8 @@
     border-radius: 1rem;
     background-color: rgba(var(--color-light), 1);
     box-shadow: 0px 3rem 5rem rgba(var(--color-dark), 0.2);
+    max-height: 45rem;
+    overflow: scroll;
   }
   &__content-heading {
     display: flex;

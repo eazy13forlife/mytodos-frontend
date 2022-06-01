@@ -1,7 +1,7 @@
 import React from "react";
 
 import TaskCard from "../TaskCard/TaskCard.js";
-const RenderedTasks = ({ tasks, recentlyCompleted }) => {
+const RenderedTasks = ({ tasks, recentlyCompleted, onClick }) => {
   let renderedTasks;
 
   if (tasks !== "error") {
@@ -19,6 +19,7 @@ const RenderedTasks = ({ tasks, recentlyCompleted }) => {
             project={project}
             key={id}
             id={id}
+            onClick={onClick}
           />
         );
       }

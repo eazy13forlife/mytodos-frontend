@@ -3,6 +3,7 @@
   padding: 0.3rem;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
   &:hover {
     background-color: rgba(var(--color-black), 0.05);
   }
