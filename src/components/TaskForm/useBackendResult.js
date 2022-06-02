@@ -17,6 +17,7 @@ const useBackendResult = (closeModal) => {
         //otherwise, if there is error, we need to set clickedCreate to false, so when we click createTask again and no backend errors, the modal will close
       } else {
         setClickedCreate(false);
+        return "error";
       }
     }
   }, [clickedCreate]);

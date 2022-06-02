@@ -8,8 +8,6 @@ import tasksReducer from "./tasksReducer.js";
 import taskCreationErrorsReducer from "./taskCreationErrorsReducer.js";
 import recentlyCompletedReducer from "./recentlyCompletedReducer.js";
 import deleteTaskErrorReducer from "./deleteTaskErrorReducer.js";
-import tasksTodayReducer from "./tasksTodayReducer.js";
-import tasksUpcomingReducer from "./tasksUpcomingReducer.js";
 import isLoggedInReducer from "./isLoggedInReducer.js";
 import projectsReducer from "./projectsReducer";
 import tasksAdjustmentReducer from "./tasksAdjustmentReducer.js";
@@ -25,8 +23,6 @@ export default combineReducers({
   taskCreationErrorsBackend: taskCreationErrorsReducer,
   recentlyCompleted: recentlyCompletedReducer,
   deleteTaskError: deleteTaskErrorReducer,
-  tasksToday: tasksTodayReducer,
-  tasksUpcoming: tasksUpcomingReducer,
   isLoggedIn: isLoggedInReducer,
   projects: projectsReducer,
   tasksAdjustment: tasksAdjustmentReducer,

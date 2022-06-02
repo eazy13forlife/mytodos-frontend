@@ -53,7 +53,6 @@ const sortTasks = (tasksArray, sort) => {
 
   const newTasks = [...tasksArray];
 
-  console.log(newTasks);
   if (!sortKey) {
     return newTasks;
   }

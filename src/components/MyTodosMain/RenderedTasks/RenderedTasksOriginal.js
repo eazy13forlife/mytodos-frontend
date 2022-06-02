@@ -1,6 +1,6 @@
 import React from "react";
 
-import TaskCard from "../TaskCard/TaskCard.js";
+import TaskCard from "../../TaskCard/TaskCard.js";
 const RenderedTasks = ({ tasks, recentlyCompleted, onClick }) => {
   let renderedTasks;
 

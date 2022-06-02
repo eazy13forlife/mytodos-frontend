@@ -4,9 +4,10 @@ import Header from "../../components/Header/Header.js";
 import Sidebar from "../../components/Sidebar/Sidebar.js";
 import MyTodosMain from "../../components/MyTodosMain/MyTodosMain.js";
 
+import "./GeneralLayout.scss";
 const GeneralLayout = ({ title, tasks, updatedValues }) => {
   return (
-    <div className="Inbox full-wrap">
+    <div className="GeneralLayout full-wrap">
       <Header />
       <div className="flex stretch-vertical">
         <Sidebar />

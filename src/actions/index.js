@@ -18,8 +18,7 @@ import {
   removeRecentlyCompleted,
 } from "./recentlyCompleted.js";
 import { onTaskCompletion } from "./buttonFunctions.js";
-import { fetchTasksToday } from "./tasksToday.js";
-import { fetchTasksUpcoming } from "./tasksUpcoming.js";
+
 import {
   createProject,
   editProject,
@@ -50,8 +49,6 @@ export {
   removeRecentlyCompleted,
   onTaskCompletion,
   removeDeleteTaskError,
-  fetchTasksToday,
-  fetchTasksUpcoming,
   removeTaskCreationError,
   createProject,
   editProject,

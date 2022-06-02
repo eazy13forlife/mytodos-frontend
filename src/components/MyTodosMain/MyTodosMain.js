@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useRouteMatch } from "react-router-dom";
 
 import { FaFilter } from "react-icons/fa";
 import { BiSortAlt2 } from "react-icons/bi";
-
 import ClickedTaskModal from "../../views/ClickedTaskModal/";
 import { initialValues } from "../TaskForm/initialValues.js";
 import ErrorBox from "../ErrorBox/ErrorBox.js";
@@ -13,10 +13,13 @@ import TaskCompletedBox from "../TaskCompletedBox/TaskCompletedBox.js";
 import useDelayUnmount from "../../hooks/useDelayUnmount.js";
 import AddTaskButton from "../AddTaskButton/AddTaskButton.js";
 import useRecentlyCompletedStatus from "./useRecentlyCompletedStatus.js";
-import RenderedTasks from "./RenderedTasks.js";
+import RenderedTasks from "./RenderedTasks/RenderedTasks.js";
+import useInitialCreateTaskValues from "./useInitialCreateTaskValues.js";
 import "./MyTodosMain.scss";
 
 const MyTodosMain = ({ title, tasks, updatedValues }) => {
+  const initialCreateTaskValues = useInitialCreateTaskValues();
+
   const updatedInitialValues = { ...initialValues, ...updatedValues };
 
   const [buttonClicked, setButtonClicked] = useState(false);
@@ -26,7 +29,6 @@ const MyTodosMain = ({ title, tasks, updatedValues }) => {
     data: {},
   });
 
-  console.log(showTaskModal);
   const [recentlyCompleted] = useRecentlyCompletedStatus();
 
   const deleteTaskError = useSelector((state) => {
@@ -104,7 +106,7 @@ const MyTodosMain = ({ title, tasks, updatedValues }) => {
         </p>
       )}
 
-      <AddTaskButton role="create" initialValues={updatedInitialValues} />
+      <AddTaskButton role="create" initialValues={initialCreateTaskValues} />
 
       {/*component is actually removed from screen(unmounted) 500ms after the mount indicator recentlyCompleted is false. This means until it is actually unmounted, we can add a style that that will remove this item visually from screen(like opacity) within the 500ms we have until it is actually unmounted*/}
       {mountTaskCompletedBox && (

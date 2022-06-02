@@ -1,39 +1,31 @@
 import produce from "immer";
 import types from "../actions/types.js";
 
-const initial = {
-  allTasks: {
-    filters: {},
-    sort: {},
-  },
-  tasksToday: {
-    filters: {},
-    sort: {},
-  },
-  tasksUpcoming: {
-    filters: {},
-    sort: {},
-  },
-  projects: {
-    byId: {},
-  },
-};
-/* without immer
- case types.ADJUST_ALL_TASKS: {
-      const adjustmentObject = action.payload;
-      const newState = {
-        ...state,
-        allTasks: {
-          ...state.allTasks,
-        },
-      };
-      const keys = Object.keys(adjustmentObject);
-      keys.forEach((key) => {
-        newState.allTasks[key] = adjustmentObject[key];
-      });
-      return newState;
-    }
-    */
+let initialState;
+
+const tasksAdjustment = window.localStorage.getItem("tasksAdjustment");
+
+if (!tasksAdjustment) {
+  initialState = {
+    allTasks: {
+      filters: {},
+      sort: {},
+    },
+    tasksToday: {
+      filters: {},
+      sort: {},
+    },
+    tasksUpcoming: {
+      filters: {},
+      sort: {},
+    },
+    projects: {
+      byId: {},
+    },
+  };
+} else {
+  initialState = JSON.parse(tasksAdjustment);
+}
 
 //adjustmentObject is an object where key is the adjustment like filter and sort and value is the value object of that key
 const addAdjustments = (baseState, adjustmentObject, taskType) => {
@@ -65,24 +57,47 @@ const addAdjustmentsProjects = (baseState, adjustmentObject, projectId) => {
   });
 };
 
-const tasksAdjustmentReducer = (state = initial, action) => {
+const tasksAdjustmentReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADJUST_ALL_TASKS: {
       const adjustmentObject = action.payload;
-      return addAdjustments(state, adjustmentObject, "allTasks");
+
+      const newState = addAdjustments(state, adjustmentObject, "allTasks");
+
+      window.localStorage.setItem("tasksAdjustment", JSON.stringify(newState));
+
+      return newState;
     }
     case types.ADJUST_TASKS_TODAY: {
       const adjustmentObject = action.payload;
-      return addAdjustments(state, adjustmentObject, "tasksToday");
+
+      const newState = addAdjustments(state, adjustmentObject, "tasksToday");
+
+      window.localStorage.setItem("tasksAdjustment", JSON.stringify(newState));
+
+      return newState;
     }
     case types.ADJUST_TASKS_UPCOMING: {
       const adjustmentObject = action.payload;
-      return addAdjustments(state, adjustmentObject, "tasksUpcoming");
+
+      const newState = addAdjustments(state, adjustmentObject, "tasksUpcoming");
+
+      window.localStorage.setItem("tasksAdjustment", JSON.stringify(newState));
+
+      return newState;
     }
     case types.ADJUST_TASKS_PROJECT: {
       const { projectId, adjustObject: adjustmentObject } = action.payload;
 
-      return addAdjustmentsProjects(state, adjustmentObject, projectId);
+      const newState = addAdjustmentsProjects(
+        state,
+        adjustmentObject,
+        projectId
+      );
+
+      window.localStorage.setItem("tasksAdjustment", JSON.stringify(newState));
+
+      return newState;
     }
     default:
       return state;

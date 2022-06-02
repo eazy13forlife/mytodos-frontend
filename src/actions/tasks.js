@@ -1,8 +1,7 @@
 import axios from "axios";
 
 import types from "./types.js";
-import { fetchTasksToday } from "./tasksToday.js";
-import { fetchTasksUpcoming } from "./tasksUpcoming.js";
+
 import {
   throwTaskCreationError,
   removeTaskCreationError,
@@ -27,7 +26,6 @@ const fetchTasks = () => {
         payload: response.data,
       });
     } catch (e) {
-      console.log(e);
       dispatch(throwFetchAllTasksError());
     }
   };
@@ -114,8 +112,6 @@ const deleteTask = (taskId) => {
 
       dispatch(removeDeleteTaskError());
     } catch (e) {
-      console.log("whys");
-      console.log(e);
       dispatch(throwDeleteTaskError());
 
       return "error";
