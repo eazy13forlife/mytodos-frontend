@@ -1,9 +1,14 @@
+@use "../abstracts";
+
 //////layout
 .container {
   max-width: 110rem;
   padding: 0rem 4rem;
   margin: 0 auto;
   height: 100%;
+  @include abstracts.respondMax(abstracts.$tablet-small) {
+    padding: 0rem 2rem;
+  }
 }
 
 .full-wrap {

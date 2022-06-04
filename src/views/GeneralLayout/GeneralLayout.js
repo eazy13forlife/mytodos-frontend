@@ -1,16 +1,25 @@
 import React from "react";
 
 import Header from "../../components/Header/Header.js";
-import Sidebar from "../../components/Sidebar/Sidebar.js";
 import MyTodosMain from "../../components/MyTodosMain/MyTodosMain.js";
-
+import useRenderSidebar from "./hooks/useRenderSidebar.js";
 import "./GeneralLayout.scss";
+
 const GeneralLayout = ({ title, tasks, updatedValues }) => {
+  const { renderSidebar, setShowSidebarPage, showSidebarPage } =
+    useRenderSidebar();
+
   return (
     <div className="GeneralLayout full-wrap">
-      <Header />
-      <div className="flex stretch-vertical">
-        <Sidebar />
+      <Header
+        onNavButtonClick={() => {
+          setShowSidebarPage(!showSidebarPage);
+        }}
+      />
+
+      <div className="GeneralLayout__main-content flex stretch-vertical">
+        {renderSidebar()}
+
         <MyTodosMain
           title={title}
           tasks={tasks}

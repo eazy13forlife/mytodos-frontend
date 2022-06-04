@@ -1,7 +1,11 @@
+@use "../../styles/abstracts";
 .Todos {
   &__content {
     padding: 2rem 5rem;
     position: relative;
+    @include abstracts.respondMax(abstracts.$tablet-small) {
+      padding: 2rem 2rem;
+    }
   }
   &__heading {
     display: flex;
@@ -18,12 +22,20 @@
       position: absolute;
       top: 100%;
       right: 0%;
-      z-index: 5;
+      z-index: 500;
+    }
+    .Filters {
+      @include abstracts.respondMax(abstracts.$mobile) {
+        right: -5rem;
+      }
     }
   }
 
   &__action-button {
     padding: 1rem;
+    @include abstracts.respondMax(abstracts.$mobile) {
+      padding: 1rem 0.5rem;
+    }
     color: rgba(var(--color-black), 0.4);
     background-color: transparent;
     border: none;

@@ -18,11 +18,8 @@ const TaskForm = ({ role, closeModal, initialValues, sendData }) => {
         initialValues={initialValues}
         validationSchema={taskValidation}
         onSubmit={async (values) => {
-          const result = await sendData(values);
-          //avoids issue of updating state after component has unmounted
-          if (result === "error") {
-            setClickedCreate(true);
-          }
+          setClickedCreate(true);
+          await sendData(values);
         }}
       >
         <Form>

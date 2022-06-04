@@ -1,18 +1,62 @@
+@use "../../styles/abstracts";
+
 .Header {
   position: relative;
   height: 8rem;
-  padding: 1.5rem 5rem;
+  padding: 1.5rem 0rem;
   background-color: rgba(var(--color-primary), 1);
   color: rgba(var(--color-light), 1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
   &__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+  &__nav-button {
+    width: 4rem;
+    height: 4rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.75rem;
+    position: relative;
+    top: 0.15rem;
+    @include abstracts.respondMax(abstracts.$mobile-large) {
+      width: 3.5rem;
+      height: 3.5rem;
+      padding: 0.2rem;
+    }
+    &:hover {
+      background-color: rgba(var(--color-black), 0.1);
+    }
+  }
+  &__nav-icon {
+    display: block;
+    background-color: rgba(var(--color-light), 1);
+    width: 3rem;
+    height: 0.2rem;
+    position: relative;
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      width: 3rem;
+      height: 0.2rem;
+      left: 0;
+      background-color: rgba(var(--color-light), 1);
+    }
+    &::after {
+      top: 0.8rem;
+    }
+    &::before {
+      bottom: 0.8rem;
+    }
+  }
   &__nav {
+    margin-left: auto;
     align-self: stretch;
   }
   &__nav-list {
@@ -29,12 +73,18 @@
     border: none;
     background-color: transparent;
     color: inherit;
+    @include abstracts.respondMax(abstracts.$mobile-large) {
+      padding: 0rem 0.5rem;
+    }
     &:hover {
       background-color: rgba(var(--color-light), 0.2);
     }
   }
   &__icon {
     font-size: 2rem;
+    @include abstracts.respondMax(abstracts.$mobile-large) {
+      font-size: var(--fs-450);
+    }
   }
   &__link {
     height: 100%;
@@ -44,6 +94,10 @@
     text-decoration: none;
     font-size: var(--fs-500);
     color: inherit;
+    @include abstracts.respondMax(abstracts.$mobile) {
+      font-size: var(--fs-400);
+      padding: 0rem 0.5rem;
+    }
     &:hover {
       background-color: rgba(var(--color-light), 0.2);
     }

@@ -1,3 +1,5 @@
+@use "../../styles/abstracts";
+
 .TaskForm {
   position: relative;
   padding: 2rem;
@@ -20,30 +22,58 @@
     grid-column-gap: 2rem;
     grid-row-gap: 3rem;
     margin-top: 2rem;
+    @include abstracts.respondMax(abstracts.$tablet-small) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
   }
   &__group {
     position: relative;
     &--title {
       grid-column: 1/2;
       grid-row: 1/2;
+      @include abstracts.respondMax(abstracts.$tablet-small) {
+        grid-column: 1/2;
+        grid-row: 1/2;
+      }
     }
     &--priority {
       grid-column: 2/3;
       grid-row: 1/2;
+      @include abstracts.respondMax(abstracts.$tablet-small) {
+        grid-column: 1/2;
+        grid-row: 3/4;
+      }
     }
     &--description {
       grid-column: 1/2;
       grid-row: 2/4;
       height: 100%;
+      @include abstracts.respondMax(abstracts.$tablet-small) {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        font-size: var(--fs-400);
+      }
     }
     &--project {
       grid-column: 2/3;
       grid-row: 2/3;
+      @include abstracts.respondMax(abstracts.$tablet-small) {
+        grid-column: 1/2;
+        grid-row: 4/5;
+      }
     }
     &--dueDate {
       grid-column: 2/3;
       grid-row: 3/4;
+      @include abstracts.respondMax(abstracts.$tablet-small) {
+        grid-column: 1/2;
+        grid-row: 5/6;
+      }
     }
+  }
+  &__text-area {
+    resize: vertical;
   }
   &__input-padding {
     padding: 0.2rem 0.5rem;
@@ -56,7 +86,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
   &__button-wrapper {
     margin-top: 2.8rem;

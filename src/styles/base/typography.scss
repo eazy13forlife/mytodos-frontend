@@ -1,6 +1,11 @@
+@use "../abstracts";
+
 .logo {
   font-family: var(--ff-primary);
   font-weight: 400;
   font-size: var(--fs-600);
   color: rgba(var(--color-dark), 1);
+  @include abstracts.respondMax(abstracts.$mobile) {
+    font-size: var(--fs-575);
+  }
 }

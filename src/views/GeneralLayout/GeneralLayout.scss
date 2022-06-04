@@ -1,4 +1,9 @@
+@forward "../../styles/abstracts/";
+
 .GeneralLayout {
+  &__main-content {
+    position: relative;
+  }
   .Sidebar {
     flex-basis: 30rem;
   }

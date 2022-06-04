@@ -10,7 +10,7 @@ import { getCount } from "./selectors.js";
 import RenderedProjects from "./RenderedProjects.js";
 import "./Sidebar.scss";
 
-const Sidebar = () => {
+const Sidebar = ({ style }) => {
   const inboxCount = useSelector((state) => {
     return state.allTasks.allIds.length;
   });
@@ -18,7 +18,7 @@ const Sidebar = () => {
   const { todayCount, upcomingCount } = useSelector(getCount);
 
   return (
-    <nav className="Sidebar">
+    <nav className="Sidebar Sidebar--show" style={style}>
       <ul className="Sidebar__main-options">
         <SidebarItem
           link="/inbox"
