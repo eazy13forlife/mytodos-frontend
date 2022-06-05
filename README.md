@@ -23,8 +23,8 @@ MyTodos is a fully responsive, full stack task application.
 ## Ideas to implements
 * Forgot password link
 * Pinterest style notes section where a user can dynamically add, remove or edit notes
-![Screen Shot 2022-06-04 at 8 18 21 PM](https://user-images.githubusercontent.com/72288176/172033550-8875d59a-08dc-4712-b84e-af48cb73a2c1.png)
-![Screen Shot 2022-06-04 at 8 17 27 PM](https://user-images.githubusercontent.com/72288176/172033552-4313c6a2-2675-4850-9c20-9c44002a470a.png)
 
 ## Images
+![Screen Shot 2022-06-04 at 8 18 21 PM](https://user-images.githubusercontent.com/72288176/172033550-8875d59a-08dc-4712-b84e-af48cb73a2c1.png)
+![Screen Shot 2022-06-04 at 8 17 27 PM](https://user-images.githubusercontent.com/72288176/172033552-4313c6a2-2675-4850-9c20-9c44002a470a.png)
 <img width="392" alt="Screen Shot 2022-06-04 at 8 58 17 PM" src="https://user-images.githubusercontent.com/72288176/172034446-096e1894-133d-40f3-84ca-102005f06827.png">
