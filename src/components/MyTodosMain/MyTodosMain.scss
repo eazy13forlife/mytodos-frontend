@@ -4,15 +4,15 @@
     padding: 2rem 5rem;
     position: relative;
     @include abstracts.respondMax(abstracts.$tablet-small) {
-      padding: 2rem 2rem;
+      padding: 2rem 3rem;
     }
   }
   &__heading {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
   }
   &__filter-and-sort {
+    margin-left: auto;
     display: flex;
   }
   &__adjustment-group {

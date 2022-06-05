@@ -132,6 +132,11 @@ const throwCreateProjectError = (responseData) => {
       type: types.THROW_CREATE_PROJECT_ERROR,
       payload: errors,
     };
+  } else {
+    return {
+      type: types.THROW_CREATE_PROJECT_ERROR,
+      payload: {},
+    };
   }
 };
 

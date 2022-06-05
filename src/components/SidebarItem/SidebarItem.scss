@@ -1,3 +1,5 @@
+@use "../../styles/abstracts";
+
 .Sidebar {
   &__item {
     display: flex;
@@ -57,5 +59,8 @@
     z-index: 1;
     top: 80%;
     right: -5rem;
+    @include abstracts.respondMax(abstracts.$mobile-large) {
+      right: 2rem;
+    }
   }
 }
