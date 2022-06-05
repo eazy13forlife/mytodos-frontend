@@ -11,6 +11,9 @@ const SidebarItem = ({ link, icon, itemName, count, type, id }) => {
 
   const [showProjectOptions, setShowProjectOptions] = useState(false);
 
+  const shortenedTitle =
+    itemName.length > 20 ? `${itemName.substring(0, 19)}...` : itemName;
+
   return (
     <li
       className="Sidebar__item"
@@ -27,8 +30,7 @@ const SidebarItem = ({ link, icon, itemName, count, type, id }) => {
       <div className="Sidebar__item-content">
         <Link to={link} className="Sidebar__link">
           {icon}
-
-          <span className="Sidebar__name">{itemName}</span>
+          <span className="Sidebar__name">{shortenedTitle}</span>
         </Link>
 
         {showEllipsesButton && type === "project" ? (

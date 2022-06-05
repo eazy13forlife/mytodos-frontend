@@ -20,6 +20,7 @@ const useGetTasks = () => {
       return useSelector(getTasksUpcoming);
     case "/projects/:projectId": {
       const projectId = match.params.projectId.substring(1);
+
       return useSelector((state) => {
         return getProjectTasks(state, projectId);
       });

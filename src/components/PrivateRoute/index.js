@@ -11,12 +11,16 @@ const PrivateRoute = ({ children, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={({ location }) => {
+      render={(props) => {
         if (userInfo) {
-          return children;
+          return React.cloneElement(children, {
+            key: props.match.params.projectId,
+          });
         }
 
-        return <Redirect to={{ pathname: "/", state: { from: location } }} />;
+        return (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        );
       }}
     />
   );

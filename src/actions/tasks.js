@@ -26,6 +26,7 @@ const fetchTasks = () => {
         payload: response.data,
       });
     } catch (e) {
+      console.log(e);
       dispatch(throwFetchAllTasksError());
     }
   };

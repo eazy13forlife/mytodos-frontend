@@ -44,10 +44,6 @@ const MyTodosMain = ({ title, tasks, updatedValues }) => {
   return (
     <main className="Todos__content">
       <div className="Todos__heading">
-        <header className="Todos__title">
-          <h1>{title}</h1>
-        </header>
-
         <div className="Todos__filter-and-sort">
           <div className="Todos__adjustment-group">
             <button
@@ -88,6 +84,10 @@ const MyTodosMain = ({ title, tasks, updatedValues }) => {
             )}
           </div>
         </div>
+
+        <header className="Todos__title">
+          <h1>{title}</h1>
+        </header>
       </div>
 
       {tasks !== "error" ? (

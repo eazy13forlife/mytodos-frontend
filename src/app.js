@@ -59,5 +59,10 @@ const App = () => {
     </Router>
   );
 };
-
+/*
+<Route
+        path="/projects/:projectId"
+        render={(props) => <Project key={props.match.params.projectId} />}
+      />
+      */
 export default App;

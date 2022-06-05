@@ -12,7 +12,10 @@ import "./Sidebar.scss";
 
 const Sidebar = ({ style }) => {
   const inboxCount = useSelector((state) => {
-    return state.allTasks.allIds.length;
+    if (state.allTasks !== "error") {
+      return state.allTasks.allIds.length;
+    }
+    return 0;
   });
 
   const { todayCount, upcomingCount } = useSelector(getCount);

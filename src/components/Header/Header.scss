@@ -9,8 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @include abstracts.respondMax(abstracts.$mobile-large) {
-    padding: 1.5rem 2rem;
+  @include abstracts.respondMax(abstracts.$tablet) {
+    padding: 1.5rem 3rem;
   }
   &__nav-button {
     width: 4rem;

@@ -10,13 +10,11 @@ const RenderedProjects = () => {
 
   const renderedProjects = projectsArray.map((project) => {
     const { title, tasks, _id: id } = projects.byId[project._id];
-    const shortenedTitle =
-      title.length > 20 ? `${title.substring(0, 19)}...` : title;
 
     return (
       <SidebarItem
         link={`/projects/:${id}`}
-        itemName={shortenedTitle}
+        itemName={title}
         count={tasks.length}
         key={project._id}
         type="project"
