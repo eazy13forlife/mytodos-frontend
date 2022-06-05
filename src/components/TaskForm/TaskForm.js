@@ -48,13 +48,13 @@ const TaskForm = ({ role, closeModal, initialValues, sendData }) => {
               <option value="" className="TaskForm__select-value">
                 None
               </option>
-              <option value="low" className="TaskForm__select-value">
+              <option value="1" className="TaskForm__select-value">
                 Low
               </option>
-              <option value="medium" className="TaskForm__select-value">
+              <option value="2" className="TaskForm__select-value">
                 Medium
               </option>
-              <option value="high" className="TaskForm__select-value">
+              <option value="3" className="TaskForm__select-value">
                 High
               </option>
             </SelectBox>

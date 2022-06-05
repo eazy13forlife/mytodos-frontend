@@ -7,6 +7,7 @@ import moment from "moment";
 import DeleteTaskContent from "../DeleteItemContent/DeleteItemContent.js";
 import EditTaskButton from "../EditTaskButton/EditTaskButton.js";
 import DeleteTaskButton from "../DeleteTaskButton/DeleteTaskButton.js";
+import renderPriorityValue from "../../helperFunctions/renderPriorityValue.js";
 import { addRecentlyCompleted, onTaskCompletion } from "../../actions/";
 import "./TaskCard.scss";
 
@@ -69,16 +70,17 @@ const TaskCard = ({
         <button
           className="TaskCard__background"
           onClick={() => {
-            console.log("hy");
             onClick({ title, description, priority, dueDate: formattedDate });
           }}
         ></button>
 
         <h2 className="TaskCard__title">{restrictedTitle}</h2>
 
-        {priority ? (
+        {renderPriorityValue(priority) ? (
           <BsFlag
-            className={`TaskCard__icon TaskCard__icon-flag TaskCard__icon-flag--${priority}`}
+            className={`TaskCard__icon TaskCard__icon-flag TaskCard__icon-flag--${renderPriorityValue(
+              priority
+            )}`}
           />
         ) : null}
 
