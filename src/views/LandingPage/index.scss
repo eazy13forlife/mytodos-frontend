@@ -1,5 +1,7 @@
+@use "../../styles/abstracts";
+
 .LandingPage {
-  background-image: url("../../images/workplace-background.jpg"),
+  background-image: url("../../images/workplace-background-copy.jpg"),
     linear-gradient(
       to right,
       rgba(var(--color-primary-light), 1),
@@ -8,6 +10,10 @@
   background-blend-mode: hard-light;
   background-size: cover;
   background-position: center;
+
+  @include abstracts.respondMax(abstracts.$tablet) {
+    background-position: left -45rem top;
+  }
 
   &__main {
     padding-top: 5rem;
@@ -21,9 +27,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    button {
-      margin-top: 3rem;
-    }
   }
   &__header {
     text-align: center;
@@ -32,6 +35,7 @@
     font-weight: 700;
   }
   &__button {
+    margin-top: 2rem;
     font-size: var(--fs-550);
   }
 }

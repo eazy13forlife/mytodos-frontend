@@ -1,3 +1,5 @@
+@use "../../styles/abstracts";
+
 .LandingHeader {
   height: 10rem;
   &__container {
@@ -12,6 +14,8 @@
     height: 100%;
     display: flex;
     list-style-type: none;
+    @include abstracts.respondMax(abstracts.$mobile-large) {
+    }
   }
   &__nav-item {
     &:hover {
@@ -27,5 +31,8 @@
     font-size: var(--fs-500);
     text-decoration: none;
     color: rgba(var(--color-dark), 1);
+    @include abstracts.respondMax(abstracts.$mobile-large) {
+      padding: 0rem 1rem;
+    }
   }
 }
