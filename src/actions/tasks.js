@@ -124,7 +124,11 @@ const fetchTask = (taskId) => {
   return async (dispatch, getState) => {
     const userInfo = getState().userInfo;
 
-    const response = await axios.get(`http://localhost:3000/tasks/${taskId}`);
+    const response = await axios.get(`http://localhost:3000/tasks/${taskId}`, {
+      headers: {
+        authorization: `bearer ${userInfo.token}`,
+      },
+    });
 
     dispatch({
       type: types.FETCH_TASK,

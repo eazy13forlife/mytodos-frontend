@@ -6,7 +6,7 @@ import history from "../../../history.js";
 import Input from "../../../components/EntryFormFields/Input/Input.js";
 import validate from "./validation.js";
 import "../index.scss";
-import { loginUser, removeLoginError } from "../../../actions";
+import { loginUser } from "../../../actions";
 
 const loginErrors = {};
 

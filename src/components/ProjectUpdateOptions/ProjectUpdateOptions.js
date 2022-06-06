@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 import UpdateProjectModal from "../../views/ModalViews/UpdateProjectModal.js";
 import DeleteProjectModal from "../DeleteItemContent/DeleteProjectModal.js";

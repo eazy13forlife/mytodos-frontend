@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import EllipsesButton from "../EllipsesButton/EllipsesButton.js";
@@ -36,7 +36,7 @@ const SidebarItem = ({ link, icon, itemName, count, type, id }) => {
         {showEllipsesButton && type === "project" ? (
           <>
             <EllipsesButton
-              onClick={(e) => {
+              onClick={() => {
                 setShowProjectOptions(!showProjectOptions);
               }}
             />

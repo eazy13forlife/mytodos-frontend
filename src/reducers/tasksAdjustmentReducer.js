@@ -50,7 +50,7 @@ const addAdjustmentsProjects = (baseState, adjustmentObject, projectId) => {
           sort: {},
         };
       }
-      console.log(adjustmentObject[adjustmentProperty]);
+
       draftState.projects.byId[projectId][adjustmentProperty] =
         adjustmentObject[adjustmentProperty];
     });

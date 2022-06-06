@@ -1,23 +1,9 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import useAdjustmentFunction from "../useAdjustmentFunction.js";
-import {
-  adjustAllTasks,
-  adjustTasksToday,
-  adjustTasksUpcoming,
-  adjustTasksProject,
-} from "../../../actions/";
-import { getTasksAdjustmentPath } from "../helperFunctions";
-import { makeGetProjectAdjustments } from "../../../selectors/projectAdjustments.js";
 import useGetCurrentAdjustments from "../useGetCurrentAdjustments.js";
 
 const useOnOptionClick = () => {
-  const match = useRouteMatch();
-
-  const dispatch = useDispatch();
-
   const currentSortObject = useGetCurrentAdjustments().sort;
 
   const currentSortBy = Object.keys(currentSortObject)[0];

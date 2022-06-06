@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 

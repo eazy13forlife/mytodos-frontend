@@ -1,8 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import history from "../../history.js";
 import LandingHeader from "../../components/LandingHeader/LandingHeader.js";
 import "./index.scss";
 

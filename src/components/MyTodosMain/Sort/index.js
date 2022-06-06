@@ -1,20 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { AiOutlineDown } from "react-icons/ai";
+import React, { useRef } from "react";
 
 import useCloseComponentOffClick from "../../../hooks/useCloseOffClick.js";
 import { sortByOptions, orderOptions, getDisplayName } from "./optionsData.js";
 import useOnOptionClick from "./useOnOptionClick.js";
-
-import {
-  adjustAllTasks,
-  adjustTasksToday,
-  adjustTasksUpcoming,
-  adjustTasksProject,
-} from "../../../actions/";
-
 import SortGroup from "./SortGroup.js/SortGroup.js";
 import "./index.scss";
+
 const Sort = ({ closeComponent }) => {
   const sortRef = useRef();
 

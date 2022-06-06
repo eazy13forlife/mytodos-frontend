@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BsFlag, BsTrash } from "react-icons/bs";
+import { BsFlag } from "react-icons/bs";
 import { GiCheckMark } from "react-icons/gi";
 import moment from "moment";
 
-import DeleteTaskContent from "../DeleteItemContent/DeleteItemContent.js";
 import EditTaskButton from "../EditTaskButton/EditTaskButton.js";
 import DeleteTaskButton from "../DeleteTaskButton/DeleteTaskButton.js";
 import renderPriorityValue from "../../helperFunctions/renderPriorityValue.js";

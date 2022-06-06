@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 //hook that determines when a component will actually mount and unmount. mountIndicator tells us if we want the item mounted or not. shouldMount is what will be used to decide the actual mounting or delayed unmounting
 const useDelayUnmount = (mountIndicator, delayTime) => {

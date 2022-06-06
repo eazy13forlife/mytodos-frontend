@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { getAllProjects } from "../../memoizedSelectors/projectsState.js";
 
-const ProjectSelectOptions = ({ projects, selected }) => {
+const ProjectSelectOptions = () => {
   const { projectsArray } = useSelector(getAllProjects);
 
   const renderedProjectOptions = projectsArray.map((project) => {

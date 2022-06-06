@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useRouteMatch } from "react-router-dom";
 
 import useCloseComponentOffClick from "../../../hooks/useCloseOffClick.js";
 import useFilterValues from "./useFilterValues.js";
 import RadioGroup from "./RadioGroup/";
 import useOnSubmit from "./useOnSubmit.js";
-import Modal from "../../Modal/Modal.js";
 import "./index.scss";
 
 const Filters = ({ closeComponent }) => {

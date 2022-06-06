@@ -92,14 +92,11 @@ const deleteProject = (projectId) => {
     try {
       const userInfo = getState().userInfo;
 
-      const response = await axios.delete(
-        `http://localhost:3000/projects/${projectId}`,
-        {
-          headers: {
-            authorization: `bearer ${userInfo.token}`,
-          },
-        }
-      );
+      await axios.delete(`http://localhost:3000/projects/${projectId}`, {
+        headers: {
+          authorization: `bearer ${userInfo.token}`,
+        },
+      });
 
       await dispatch({
         type: types.DELETE_PROJECT,

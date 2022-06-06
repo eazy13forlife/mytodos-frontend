@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { BsTrash } from "react-icons/bs";
 
-import Modal from "../Modal/Modal.js";
-import DeleteTaskContent from "../DeleteItemContent/DeleteItemContent.js";
 import DeleteTaskModal from "../DeleteItemContent/DeleteTaskModal.js";
 
 const DeleteTaskButton = ({ title, id }) => {
@@ -15,7 +13,7 @@ const DeleteTaskButton = ({ title, id }) => {
     <>
       <button
         className="DeleteTaskButton TaskCard__button-trash icon-button"
-        onClick={(e) => {
+        onClick={() => {
           setShowDeleteModal(true);
         }}
       >

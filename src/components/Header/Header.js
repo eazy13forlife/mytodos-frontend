@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import CreateTaskButton from "../CreateTaskButton/CreateTaskButton.js";
 import LogoutButton from "../LogoutButton/LogoutButton.js";
@@ -7,7 +7,6 @@ import useWindowWidth from "../../hooks/useWindowWidth.js";
 
 const Header = ({ onNavButtonClick }) => {
   const windowWidth = useWindowWidth();
-  const [showSidebarPage, setShowSidebarPage] = useState(false);
 
   return (
     <header className="Header">

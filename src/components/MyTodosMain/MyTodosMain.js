@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
 
 import { FaFilter } from "react-icons/fa";
 import { BiSortAlt2 } from "react-icons/bi";
 import ClickedTaskModal from "../../views/ClickedTaskModal/";
-import { initialValues } from "../TaskForm/initialValues.js";
 import ErrorBox from "../ErrorBox/ErrorBox.js";
 import Filters from "./Filters";
 import Sort from "./Sort";
@@ -17,10 +15,8 @@ import RenderedTasks from "./RenderedTasks/RenderedTasks.js";
 import useInitialCreateTaskValues from "./useInitialCreateTaskValues.js";
 import "./MyTodosMain.scss";
 
-const MyTodosMain = ({ title, tasks, updatedValues }) => {
+const MyTodosMain = ({ title, tasks }) => {
   const initialCreateTaskValues = useInitialCreateTaskValues();
-
-  const updatedInitialValues = { ...initialValues, ...updatedValues };
 
   const [buttonClicked, setButtonClicked] = useState(false);
 

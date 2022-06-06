@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import { renderDefaultChecked } from "./helpers";
 import useFilterValues from "../useFilterValues.js";

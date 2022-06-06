@@ -1,10 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { BsPencil } from "react-icons/bs";
 
-import { editTask, removeTaskCreationError } from "../../actions";
-import Modal from "../Modal/Modal.js";
-import TaskForm from "../TaskForm/TaskForm.js";
 import withCreateTaskModal from "../../HOC/withUpdateTaskModal.js";
 
 const EditTaskButton = ({ onClick }) => {

@@ -1,5 +1,3 @@
-import React from "react";
-
 import useAdjustmentFunction from "../useAdjustmentFunction.js";
 
 const useOnSubmit = (filterValues, closeFilters) => {

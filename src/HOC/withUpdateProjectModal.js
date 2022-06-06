@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import UpdateProjectModal from "../views/ModalViews/UpdateProjectModal.js";
 
@@ -13,7 +13,7 @@ export default function (WrappedComponent) {
     return (
       <>
         <WrappedComponent
-          onClick={(e) => {
+          onClick={() => {
             setShowAddProjectModal(true);
           }}
           {...props}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import history from "../../../history.js";
 import validateFields from "./validation.js";
 import Input from "../../../components/EntryFormFields/Input/Input.js";
 import { createUser } from "../../../actions";
@@ -25,21 +24,6 @@ const SignUp = () => {
   });
 
   const [formErrors, setFormErrors] = useState({});
-
-  const [clickSignUp, setClickSignUp] = useState(false);
-
-  /*
-  //if clickSignUp is true and no formErrors(from backend and frontend), let's go to inbox page.Butwe have a route that immediately takes us to inbox when userInfo exists, so that will run before this useEffect runs Otherwise, setClickSignUp needs to be false,and we try again.
-  useEffect(() => {
-    if (clickSignUp) {
-      if (!signUpErrorsBackend) {
-        history.push("/inbox");
-      } else {
-        setClickSignUp(false);
-      }
-    }
-  }, [clickSignUp]);
-*/
 
   //whenever signUpErrorsBackend changes,change global signUpErrors to equal these new errors (since it is our main truth of current errors) and then we update our formErrors state to equal this global signUpErrors
   useEffect(() => {
