@@ -3,8 +3,10 @@
 MyTodos is a fully responsive, full stack task application
 
 ## Images
+### Desktop
 ![Screen Shot 2022-06-04 at 8 18 21 PM](https://user-images.githubusercontent.com/72288176/172033550-8875d59a-08dc-4712-b84e-af48cb73a2c1.png)
 ![Screen Shot 2022-06-04 at 8 17 27 PM](https://user-images.githubusercontent.com/72288176/172033552-4313c6a2-2675-4850-9c20-9c44002a470a.png)
+### Mobile
 ![Screen Shot 2022-06-04 at 10 16 55 PM](https://user-images.githubusercontent.com/72288176/172036191-94cb6fc4-cd1a-4b7c-be3e-0cd1db10de72.png)
 
 ## Technologies
