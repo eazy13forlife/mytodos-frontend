@@ -96,7 +96,7 @@ const projectsReducer = (state = projects, action) => {
     }
     case types.EDIT_TASK: {
       const { originalTask, editedTask } = action.payload;
-      console.log("dafsdfasdfadfasdffdfasdf");
+
       //if originalTask did not have project but edited task has project, add this task to the project of the new task,
       if (!originalTask.project && editedTask.project) {
         return produce(state, (draftState) => {

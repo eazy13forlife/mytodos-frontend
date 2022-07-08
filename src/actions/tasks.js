@@ -77,7 +77,6 @@ const editTask = (taskId, taskData) => {
           },
         }
       );
-      console.log(response);
 
       dispatch({
         type: types.EDIT_TASK,
