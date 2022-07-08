@@ -14,7 +14,7 @@ const createProject = (projectData) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.post(
-        "http://localhost:3000/projects",
+        "https://baffour-todos-backend.herokuapp.com",
         projectData,
         {
           headers: {
@@ -41,7 +41,7 @@ const editProject = (projectId, projectData) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.patch(
-        `http://localhost:3000/projects/${projectId}`,
+        `https://baffour-todos-backend.herokuapp.com/${projectId}`,
         projectData,
         {
           headers: {
@@ -69,7 +69,7 @@ const fetchProject = (projectId) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.get(
-        `http://localhost:3000/projects/${projectId}`,
+        `https://baffour-todos-backend.herokuapp.com/${projectId}`,
         {
           headers: {
             authorization: `bearer ${userInfo.token}`,
@@ -92,11 +92,14 @@ const deleteProject = (projectId) => {
     try {
       const userInfo = getState().userInfo;
 
-      await axios.delete(`http://localhost:3000/projects/${projectId}`, {
-        headers: {
-          authorization: `bearer ${userInfo.token}`,
-        },
-      });
+      await axios.delete(
+        `https://baffour-todos-backend.herokuapp.com/${projectId}`,
+        {
+          headers: {
+            authorization: `bearer ${userInfo.token}`,
+          },
+        }
+      );
 
       await dispatch({
         type: types.DELETE_PROJECT,
@@ -118,11 +121,14 @@ const fetchProjects = () => {
     try {
       const userInfo = getState().userInfo;
 
-      const response = await axios.get("http://localhost:3000/projects", {
-        headers: {
-          authorization: `bearer ${userInfo.token}`,
-        },
-      });
+      const response = await axios.get(
+        "https://baffour-todos-backend.herokuapp.com",
+        {
+          headers: {
+            authorization: `bearer ${userInfo.token}`,
+          },
+        }
+      );
 
       dispatch({
         type: types.FETCH_PROJECTS,

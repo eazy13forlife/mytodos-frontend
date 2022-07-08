@@ -14,7 +14,7 @@ const createUser = (userData) => {
   return async (dispatch) => {
     try {
       const createdUser = await axios.post(
-        "http://localhost:3000/users/create",
+        "https://baffour-todos-backend.herokuapp.com/users/create",
         userData
       );
 
@@ -36,7 +36,7 @@ const loginUser = (userData) => {
   return async (dispatch, getState) => {
     try {
       const loggedUser = await axios.post(
-        "http://localhost:3000/users/login",
+        "https://baffour-todos-backend.herokuapp.com/users/login",
         userData
       );
 
@@ -63,11 +63,15 @@ const logoutUser = () => {
     const userInfo = getState().userInfo;
 
     try {
-      await axios.post("http://localhost:3000/users/logout", undefined, {
-        headers: {
-          authorization: `bearer ${userInfo.token}`,
-        },
-      });
+      await axios.post(
+        "https://baffour-todos-backend.herokuapp.com/users/logout",
+        undefined,
+        {
+          headers: {
+            authorization: `bearer ${userInfo.token}`,
+          },
+        }
+      );
 
       dispatch({
         type: types.LOGOUT_USER,
@@ -86,11 +90,14 @@ const getMyProfile = () => {
   return async (dispatch, getState) => {
     const userInfo = getState().userInfo;
 
-    const userResponse = await axios.get("http://localhost:3000/users/me", {
-      headers: {
-        authorization: `bearer ${userInfo.token}`,
-      },
-    });
+    const userResponse = await axios.get(
+      "https://baffour-todos-backend.herokuapp.com/users/me",
+      {
+        headers: {
+          authorization: `bearer ${userInfo.token}`,
+        },
+      }
+    );
 
     dispatch({
       type: types.GET_MY_PROFILE,

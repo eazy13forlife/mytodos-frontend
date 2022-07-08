@@ -15,11 +15,14 @@ const fetchTasks = () => {
     try {
       const userInfo = getState().userInfo;
 
-      const response = await axios.get("http://localhost:3000/tasks", {
-        headers: {
-          authorization: `bearer ${userInfo.token}`,
-        },
-      });
+      const response = await axios.get(
+        "https://baffour-todos-backend.herokuapp.com",
+        {
+          headers: {
+            authorization: `bearer ${userInfo.token}`,
+          },
+        }
+      );
 
       dispatch({
         type: types.FETCH_ALL_TASKS,
@@ -38,7 +41,7 @@ const createTask = (taskData) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.post(
-        "http://localhost:3000/tasks",
+        "https://baffour-todos-backend.herokuapp.com",
         taskData,
         {
           headers: {
@@ -66,7 +69,7 @@ const editTask = (taskId, taskData) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.patch(
-        `http://localhost:3000/tasks/${taskId}`,
+        `https://baffour-todos-backend.herokuapp.com/${taskId}`,
         taskData,
         {
           headers: {
@@ -98,7 +101,7 @@ const deleteTask = (taskId) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.delete(
-        `http://localhost:3000/tasks/${taskId}`,
+        `https://baffour-todos-backend.herokuapp.com/${taskId}`,
         {
           headers: {
             authorization: `bearer ${userInfo.token}`,
@@ -124,11 +127,14 @@ const fetchTask = (taskId) => {
   return async (dispatch, getState) => {
     const userInfo = getState().userInfo;
 
-    const response = await axios.get(`http://localhost:3000/tasks/${taskId}`, {
-      headers: {
-        authorization: `bearer ${userInfo.token}`,
-      },
-    });
+    const response = await axios.get(
+      `https://baffour-todos-backend.herokuapp.com/${taskId}`,
+      {
+        headers: {
+          authorization: `bearer ${userInfo.token}`,
+        },
+      }
+    );
 
     dispatch({
       type: types.FETCH_TASK,
