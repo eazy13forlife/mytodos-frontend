@@ -16,7 +16,7 @@ const fetchTasks = () => {
       const userInfo = getState().userInfo;
 
       const response = await axios.get(
-        "https://baffour-todos-backend.herokuapp.com",
+        "https://baffour-todos-backend.herokuapp.com/",
         {
           headers: {
             authorization: `bearer ${userInfo.token}`,
