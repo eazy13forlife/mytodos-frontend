@@ -9,7 +9,7 @@ const fetchTasksUpcoming = () => {
       const userInfo = getState().userInfo;
 
       const response = await axios.get(
-        "https://baffour-todos-backend.herokuapp.com?dueDate=upcoming",
+        "https://baffour-todos-backend.herokuapp.com/tasks?dueDate=upcoming",
         {
           headers: {
             authorization: `bearer ${userInfo.token}`,

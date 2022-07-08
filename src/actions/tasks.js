@@ -16,7 +16,7 @@ const fetchTasks = () => {
       const userInfo = getState().userInfo;
 
       const response = await axios.get(
-        "https://baffour-todos-backend.herokuapp.com/",
+        "https://baffour-todos-backend.herokuapp.com/tasks",
         {
           headers: {
             authorization: `bearer ${userInfo.token}`,
@@ -41,7 +41,7 @@ const createTask = (taskData) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.post(
-        "https://baffour-todos-backend.herokuapp.com",
+        "https://baffour-todos-backend.herokuapp.com/tasks",
         taskData,
         {
           headers: {
@@ -69,7 +69,7 @@ const editTask = (taskId, taskData) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.patch(
-        `https://baffour-todos-backend.herokuapp.com/${taskId}`,
+        `https://baffour-todos-backend.herokuapp.com/tasks/${taskId}`,
         taskData,
         {
           headers: {
@@ -101,7 +101,7 @@ const deleteTask = (taskId) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.delete(
-        `https://baffour-todos-backend.herokuapp.com/${taskId}`,
+        `https://baffour-todos-backend.herokuapp.com/tasks/${taskId}`,
         {
           headers: {
             authorization: `bearer ${userInfo.token}`,
@@ -128,7 +128,7 @@ const fetchTask = (taskId) => {
     const userInfo = getState().userInfo;
 
     const response = await axios.get(
-      `https://baffour-todos-backend.herokuapp.com/${taskId}`,
+      `https://baffour-todos-backend.herokuapp.com/tasks/${taskId}`,
       {
         headers: {
           authorization: `bearer ${userInfo.token}`,

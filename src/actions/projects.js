@@ -14,7 +14,7 @@ const createProject = (projectData) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.post(
-        "https://baffour-todos-backend.herokuapp.com",
+        "https://baffour-todos-backend.herokuapp.com/projects",
         projectData,
         {
           headers: {
@@ -41,7 +41,7 @@ const editProject = (projectId, projectData) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.patch(
-        `https://baffour-todos-backend.herokuapp.com/${projectId}`,
+        `https://baffour-todos-backend.herokuapp.com/projects/${projectId}`,
         projectData,
         {
           headers: {
@@ -69,7 +69,7 @@ const fetchProject = (projectId) => {
       const userInfo = getState().userInfo;
 
       const response = await axios.get(
-        `https://baffour-todos-backend.herokuapp.com/${projectId}`,
+        `https://baffour-todos-backend.herokuapp.com/projects/${projectId}`,
         {
           headers: {
             authorization: `bearer ${userInfo.token}`,
@@ -93,7 +93,7 @@ const deleteProject = (projectId) => {
       const userInfo = getState().userInfo;
 
       await axios.delete(
-        `https://baffour-todos-backend.herokuapp.com/${projectId}`,
+        `https://baffour-todos-backend.herokuapp.com/projects/${projectId}`,
         {
           headers: {
             authorization: `bearer ${userInfo.token}`,
@@ -122,7 +122,7 @@ const fetchProjects = () => {
       const userInfo = getState().userInfo;
 
       const response = await axios.get(
-        "https://baffour-todos-backend.herokuapp.com",
+        "https://baffour-todos-backend.herokuapp.com/projects",
         {
           headers: {
             authorization: `bearer ${userInfo.token}`,
