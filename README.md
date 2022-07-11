@@ -1,5 +1,4 @@
 # MyTodos
-
 MyTodos is a fully responsive, full stack task application
 
 ## Live Url
