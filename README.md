@@ -1,5 +1,5 @@
 # MyTodos
-MyTodos is a fully responsive, full stack task application
+MyTodos is a fully responsive, full stack task application with a bunch of fun features.
 
 ## Live Url
 https://mytodos-frontend.vercel.app/
