@@ -12,7 +12,7 @@
 
 .EntryForm {
   background-color: rgba(var(--color-light), 1);
-  width: 45rem;
+  max-width: 45rem;
   padding: 2rem;
   border: var(--form-border);
   border-radius: 10px;
