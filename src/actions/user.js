@@ -32,9 +32,18 @@ const createUser = (userData) => {
   };
 };
 
+const attemptLogin = (boolean) => {
+  return {
+    type: types.ATTEMPT_LOGIN,
+    payload: boolean,
+  };
+};
+
 const loginUser = (userData) => {
   return async (dispatch, getState) => {
     try {
+      dispatch(attemptLogin(true));
+
       const loggedUser = await axios.post(
         "https://baffour-todos-backend.herokuapp.com/users/login",
         userData
@@ -50,6 +59,8 @@ const loginUser = (userData) => {
       if (loginErrorBackend) {
         dispatch(removeLoginError());
       }
+
+      dispatch(attemptLogin(false));
     } catch (e) {
       dispatch(throwLoginError());
 

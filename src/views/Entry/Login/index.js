@@ -21,6 +21,10 @@ const Login = () => {
     return state.userInfo;
   });
 
+  const attemptingLogin = useSelector((state) => {
+    return state.attemtpingLogin;
+  });
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -63,6 +67,9 @@ const Login = () => {
   return (
     <div className="Entry full-wrap">
       <div className="Entry__container container">
+        {attemptingLogin ? (
+          <p className="color-primary">Logging in...</p>
+        ) : null}
         <form
           method="post"
           action="urlofthepageontheserverthatthisformwillgoto"
