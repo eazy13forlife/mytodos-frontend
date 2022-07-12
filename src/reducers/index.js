@@ -29,5 +29,5 @@ export default combineReducers({
   tasksAdjustment: tasksAdjustmentReducer,
   projectCreationErrorsBackend: projectCreationErrorsReducer,
   deleteProjectErrorBackend: deleteProjectErrorReducer,
-  attemptinglogin: attemptingLoginReducer,
+  attemptingLogin: attemptingLoginReducer,
 });

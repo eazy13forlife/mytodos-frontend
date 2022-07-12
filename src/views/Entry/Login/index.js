@@ -22,7 +22,7 @@ const Login = () => {
   });
 
   const attemptingLogin = useSelector((state) => {
-    return state.attemtpingLogin;
+    return state.attemptingLogin;
   });
 
   const [formData, setFormData] = useState({
