@@ -1,3 +1,5 @@
+@use "../../styles/abstracts";
+
 .Entry {
   background-color: rgba(var(--color-primary), 0.2);
   height: 100%;
@@ -12,10 +14,13 @@
 
 .EntryForm {
   background-color: rgba(var(--color-light), 1);
-  max-width: 45rem;
+  width: 45rem;
   padding: 2rem;
   border: var(--form-border);
   border-radius: 10px;
+  @include abstracts.respondMax(abstracts.$tablet-small) {
+    width: 90vw;
+  }
   &__title {
     font-weight: 600;
     font-size: var(--fs-600);
