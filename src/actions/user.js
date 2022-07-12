@@ -62,6 +62,8 @@ const loginUser = (userData) => {
 
       dispatch(attemptLogin(false));
     } catch (e) {
+      dispatch(attemptLogin(false));
+
       dispatch(throwLoginError());
 
       return "error";
