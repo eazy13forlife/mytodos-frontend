@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-
+import { useRouteMatch } from "react-router-dom";
 import { deleteProject, removeDeleteProjectError } from "../../actions";
 
 let timerId;
@@ -7,8 +7,21 @@ let timerId;
 const useDeleteProjectHook = (projectId, closeModal) => {
   const dispatch = useDispatch();
 
+  const match = useRouteMatch();
+
   const onDeleteClick = async () => {
-    const resp = await dispatch(deleteProject(projectId));
+    let resp;
+
+    //if we are on the same project page we are deleting, navigate to home directory afterwards
+     if (
+      match.params.projectId &&
+      match.params.projectId.split(":")[1] === projectId
+    ) {
+      resp = await dispatch(deleteProject(projectId));
+      history.push("/");
+    } else {
+      resp = await dispatch(deleteProject(projectId));
+    }
 
     //we want to remove deleteTaskError after 5000ms so error box won't show again.
     if (resp === "error") {
