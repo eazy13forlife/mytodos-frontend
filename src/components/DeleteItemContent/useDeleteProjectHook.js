@@ -13,7 +13,7 @@ const useDeleteProjectHook = (projectId, closeModal) => {
     let resp;
 
     //if we are on the same project page we are deleting, navigate to home directory afterwards
-     if (
+    if (
       match.params.projectId &&
       match.params.projectId.split(":")[1] === projectId
     ) {
