@@ -8,6 +8,7 @@
   width: 30rem;
   font-size: var(--fs-400);
   position: fixed;
+  z-index:9;
   left: 60%;
   transform: translatex(-60%);
   animation: slideUp 800ms forwards ease-out;
