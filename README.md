@@ -18,7 +18,8 @@ https://mytodos-frontend.vercel.app/
 * SCSS
 * Node.js
 * Express.js
-* MongoDB
+* Mongoose
+* NoSQL
 
 ## Notable Features
 * Fully responsive
